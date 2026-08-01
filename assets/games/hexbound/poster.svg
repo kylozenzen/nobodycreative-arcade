@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" role="img" aria-labelledby="t d">
+<title id="t">HEXBOUND preview art</title><desc id="d">Concept cabinet artwork for HEXBOUND</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7184"/><stop offset="1" stop-color="#671127"/></linearGradient><radialGradient id="r"><stop stop-color="white" stop-opacity=".15"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<rect width="1000" height="625" fill="#09090d"/><rect width="1000" height="625" fill="url(#g)"/><circle cx="760" cy="220" r="340" fill="url(#r)"/>
+<path d="M0 555L1000 460v165H0z" fill="#050508" fill-opacity=".55"/><path d="M0 590L1000 500" stroke="white" stroke-opacity=".10" stroke-width="2"/>
+<path d="M690 410c-30-70-20-145 30-205l65 85-50 135z" fill="white" fill-opacity=".18"/><path d="M920 410c30-70 20-145-30-205l-65 85 50 135z" fill="white" fill-opacity=".10"/><path d="M745 245l75 30m55-30-75 30" stroke="white" stroke-width="12" stroke-linecap="round"/><text x="805" y="340" text-anchor="middle" font-size="72" font-family="system-ui" font-weight="1000" fill="white" fill-opacity=".75">VS</text>
+<text x="65" y="76" font-family="system-ui,sans-serif" font-size="20" letter-spacing="5" font-weight="800" fill="white" fill-opacity=".78">NOBODY ARCADE</text>
+<text x="65" y="220" text-anchor="start" class="title" font-size="91">HEXBOUND</text>
+<text x="68" y="505" font-family="system-ui,sans-serif" font-size="22" letter-spacing="2.6" font-weight="800" fill="white" fill-opacity=".82">SETTLE IT IN THE ARENA</text>
+<text x="915" y="570" text-anchor="middle" font-family="system-ui,sans-serif" font-size="64" font-weight="1000" fill="white" fill-opacity=".34">X</text>
+<style>.title{font-family:system-ui,sans-serif;font-weight:1000;letter-spacing:-4px;fill:white}</style></svg>

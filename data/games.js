@@ -25,7 +25,7 @@ window.ARCADE_GAMES = [
     year: 2026,
     featured: true,
     workshop: false,
-    playUrl: "",
+    playUrl: "https://highstakestruth.netlify.app/",
     embed: true,
     accent: "orange",
     icon: "◆",

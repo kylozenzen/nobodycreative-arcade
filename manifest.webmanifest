@@ -1,0 +1,22 @@
+{
+  "name": "Nobody Arcade",
+  "short_name": "Nobody Arcade",
+  "description": "A playable portfolio of compact games, prototypes, and questionable ideas.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#08080c",
+  "theme_color": "#08080c",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "High Stakes Truth", "short_name": "High Stakes", "url": "./#game=high-stakes-truth", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Plot Twisted Gaming", "short_name": "Plot Twisted", "url": "./#game=plot-twisted-gaming", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Feed Velocity", "short_name": "Feed Velocity", "url": "./#game=feed-velocity", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

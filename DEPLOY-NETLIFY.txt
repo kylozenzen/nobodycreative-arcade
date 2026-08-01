@@ -1,6 +1,17 @@
-NETLIFY DEPLOY
+NOBODY ARCADE PHASE 1.5 — NETLIFY
 
-Drag this ZIP directly into Netlify Deploys, or unzip it and drag the CONTENTS of this folder.
-The ZIP root contains index.html, netlify.toml, assets/, and data/.
+This package is already flattened correctly.
+The ZIP root contains index.html.
 
-Do not place these files inside another parent folder before zipping.
+MANUAL DEPLOY
+1. Open your site in Netlify.
+2. Go to Deploys.
+3. Upload nobody-arcade-phase1-5-netlify-ready.zip.
+4. Wait for Published.
+5. Hard-refresh the live site once so the new service worker takes control.
+
+IMPORTANT
+- Do not unzip it and then upload the parent folder.
+- PWA installation requires the HTTPS Netlify URL.
+- Update data/games.js with your deployed game URLs.
+- Replace hello@example.com in index.html.

@@ -2,33 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0a0d" />
-  <meta name="description" content="Nobody Arcade — small games, big swings. Play experimental mini games and explore how they were built." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#08080c" />
+  <meta name="description" content="Nobody Arcade — a playable portfolio of compact games, prototypes, and questionable ideas." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Nobody Arcade" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta property="og:title" content="Nobody Arcade — Small games. Big swings." />
+  <meta property="og:description" content="Play compact games and explore how they were built." />
+  <meta property="og:image" content="assets/share-card.svg" />
   <title>Nobody Arcade — Small games. Big swings.</title>
+  <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
   <a class="skip-link" href="#games">Skip to games</a>
-
   <div class="noise" aria-hidden="true"></div>
+
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Nobody Arcade home">
+    <button class="brand secret-trigger" id="secretTrigger" type="button" aria-label="Nobody Arcade home" title="Nobody Arcade">
       <span class="brand-mark" aria-hidden="true">N</span>
-      <span>
+      <span class="brand-copy">
         <strong>NOBODY ARCADE</strong>
         <small>Small games. Big swings.</small>
       </span>
-    </a>
+    </button>
 
-    <nav aria-label="Primary navigation">
+    <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="#games">Games</a>
       <a href="#workshop">Workshop</a>
       <a href="#about">About</a>
-      <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" title="Toggle interface sounds">
-        Sound: off
-      </button>
+      <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">Sound: off</button>
+      <button class="install-nav hidden" id="installButton" type="button">Install arcade</button>
     </nav>
   </header>
 
@@ -36,10 +44,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">The doors are open</p>
-        <h1 id="hero-title">A playable portfolio for games that probably started as “what if…”</h1>
-        <p class="hero-text">
-          Explore quick-hit arcade games, trivia experiments, strange prototypes, and the decisions behind each build.
-        </p>
+        <h1 id="hero-title">A playable portfolio for games that started with “what if…”</h1>
+        <p class="hero-text">Explore quick-hit arcade games, trivia experiments, strange prototypes, and the decisions behind each build.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#games">Enter the arcade</a>
           <button class="button button-secondary" id="randomGameButton" type="button">Pick something weird</button>
@@ -55,6 +61,17 @@
         <div class="cabinet-lights" aria-hidden="true"></div>
         <div id="featuredGame" class="featured-game"></div>
       </aside>
+    </section>
+
+    <section class="install-banner hidden" id="installBanner" aria-labelledby="install-title">
+      <div class="install-icon" aria-hidden="true">↘</div>
+      <div>
+        <p class="eyebrow">Pocket arcade</p>
+        <h2 id="install-title">Install the hub on your phone</h2>
+        <p>Launch it from your home screen like an app. No app store side quest required.</p>
+      </div>
+      <button class="button button-primary" id="installBannerButton" type="button">Add to home screen</button>
+      <button class="banner-dismiss" id="installDismiss" type="button" aria-label="Dismiss install suggestion">×</button>
     </section>
 
     <section class="continue-section hidden" id="continueSection" aria-labelledby="continue-title">
@@ -73,7 +90,7 @@
           <p class="eyebrow">Choose your cabinet</p>
           <h2 id="games-title">The arcade floor</h2>
         </div>
-        <p>Play immediately, or open Project View to see the thinking behind the build.</p>
+        <p>Tap a cabinet to play, or open Project View to see the thinking behind the build.</p>
       </div>
 
       <div class="controls" aria-label="Game filters">
@@ -106,6 +123,15 @@
       </div>
     </section>
 
+    <section class="back-room hidden" id="backRoom" aria-labelledby="back-room-title">
+      <div class="back-room-copy">
+        <p class="eyebrow">Unauthorized access granted</p>
+        <h2 id="back-room-title">The Back Room</h2>
+        <p>You found the cabinet management insists does not exist.</p>
+      </div>
+      <div id="secretGameSlot"></div>
+    </section>
+
     <section class="workshop" id="workshop" aria-labelledby="workshop-title">
       <div class="section-heading">
         <div>
@@ -123,17 +149,13 @@
         <h2 id="about-title">Built by Ben at Nobody Creative</h2>
       </div>
       <div class="about-copy">
-        <p>
-          Nobody Arcade is a growing collection of compact games made to test mechanics, visual ideas, humor, and the occasional terrible decision.
-        </p>
-        <p>
-          Each project includes a playable build and a short case study covering the concept, process, tools, challenges, and next iteration.
-        </p>
+        <p>Nobody Arcade is a growing collection of compact games made to test mechanics, visual ideas, humor, and the occasional terrible decision.</p>
+        <p>Each project includes a playable build and a short case study covering the concept, process, tools, challenges, and next iteration.</p>
         <div class="about-links">
           <a class="button button-primary" href="mailto:hello@example.com">Get in touch</a>
           <a class="button button-secondary" href="#games">Play a game instead</a>
         </div>
-        <p class="setup-note">Replace the contact email and game links in <code>data/games.js</code> before launch.</p>
+        <p class="setup-note">Replace the contact email, game links, and preview assets before public launch.</p>
       </div>
     </section>
   </main>
@@ -142,6 +164,14 @@
     <span>© <span id="year"></span> Nobody Creative</span>
     <span>Please stop shaking the cabinets. They are hosted on Netlify.</span>
   </footer>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#top"><span aria-hidden="true">⌂</span>Home</a>
+    <a href="#games"><span aria-hidden="true">▦</span>Games</a>
+    <button id="mobileRandomButton" type="button"><span aria-hidden="true">?</span>Random</button>
+    <a href="#workshop"><span aria-hidden="true">⚒</span>Workshop</a>
+    <button class="mobile-install hidden" id="mobileInstallButton" type="button"><span aria-hidden="true">↓</span>Install</button>
+  </nav>
 
   <dialog class="game-dialog" id="gameDialog" aria-labelledby="dialogTitle">
     <button class="dialog-close" id="dialogClose" type="button" aria-label="Close project details">×</button>
@@ -155,14 +185,35 @@
         <h2 id="playDialogTitle"></h2>
       </div>
       <div class="play-dialog-actions">
-        <a id="openNewTab" class="text-button" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <button id="fullscreenButton" class="text-button" type="button">Fullscreen</button>
+        <a id="openNewTab" class="text-button" href="#" target="_blank" rel="noopener">Open separately ↗</a>
         <button class="dialog-close inline" id="playDialogClose" type="button" aria-label="Close game">×</button>
       </div>
     </div>
     <div class="iframe-wrap">
-      <iframe id="gameFrame" title="Game player" allow="fullscreen; autoplay; gamepad" loading="lazy"></iframe>
+      <div class="player-loading" id="playerLoading"><span></span>Loading cabinet…</div>
+      <iframe id="gameFrame" title="Game player" allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write" loading="lazy"></iframe>
     </div>
   </dialog>
+
+  <dialog class="install-dialog" id="installDialog" aria-labelledby="installDialogTitle">
+    <button class="dialog-close" id="installDialogClose" type="button" aria-label="Close install instructions">×</button>
+    <div class="install-dialog-body">
+      <div class="install-app-icon" aria-hidden="true">N</div>
+      <p class="eyebrow">Install Nobody Arcade</p>
+      <h2 id="installDialogTitle">Put the arcade on your home screen</h2>
+      <ol id="installInstructions"></ol>
+      <p class="install-note">It opens full-screen and keeps the hub one tap away. Individual games still launch from inside the arcade.</p>
+    </div>
+  </dialog>
+
+  <div class="unlock-flash hidden" id="unlockFlash" role="status" aria-live="assertive">
+    <div>
+      <p class="eyebrow">Secret unlocked</p>
+      <strong>The Back Room is open.</strong>
+      <span>Management would prefer you forget this happened.</span>
+    </div>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

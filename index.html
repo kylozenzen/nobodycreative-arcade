@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0d" />
+  <meta name="description" content="Nobody Arcade — small games, big swings. Play experimental mini games and explore how they were built." />
+  <title>Nobody Arcade — Small games. Big swings.</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#games">Skip to games</a>
+
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nobody Arcade home">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>
+        <strong>NOBODY ARCADE</strong>
+        <small>Small games. Big swings.</small>
+      </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <a href="#games">Games</a>
+      <a href="#workshop">Workshop</a>
+      <a href="#about">About</a>
+      <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" title="Toggle interface sounds">
+        Sound: off
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">The doors are open</p>
+        <h1 id="hero-title">A playable portfolio for games that probably started as “what if…”</h1>
+        <p class="hero-text">
+          Explore quick-hit arcade games, trivia experiments, strange prototypes, and the decisions behind each build.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#games">Enter the arcade</a>
+          <button class="button button-secondary" id="randomGameButton" type="button">Pick something weird</button>
+        </div>
+        <div class="hero-stats" aria-label="Arcade statistics">
+          <span><strong id="playableCount">0</strong> playable</span>
+          <span><strong id="prototypeCount">0</strong> experiments</span>
+          <span><strong id="playedCount">0</strong> played by you</span>
+        </div>
+      </div>
+
+      <aside class="featured-shell" aria-label="Featured game">
+        <div class="cabinet-lights" aria-hidden="true"></div>
+        <div id="featuredGame" class="featured-game"></div>
+      </aside>
+    </section>
+
+    <section class="continue-section hidden" id="continueSection" aria-labelledby="continue-title">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Your save file</p>
+          <h2 id="continue-title">Continue playing</h2>
+        </div>
+      </div>
+      <div id="continueCard"></div>
+    </section>
+
+    <section class="games-section" id="games" aria-labelledby="games-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Choose your cabinet</p>
+          <h2 id="games-title">The arcade floor</h2>
+        </div>
+        <p>Play immediately, or open Project View to see the thinking behind the build.</p>
+      </div>
+
+      <div class="controls" aria-label="Game filters">
+        <label class="search-control">
+          <span class="sr-only">Search games</span>
+          <input id="searchInput" type="search" placeholder="Search the arcade…" autocomplete="off" />
+        </label>
+        <div class="filter-row" id="filterButtons" role="group" aria-label="Filter by genre"></div>
+        <label class="select-control">
+          <span class="sr-only">Sort games</span>
+          <select id="sortSelect">
+            <option value="featured">Featured first</option>
+            <option value="newest">Newest</option>
+            <option value="az">A–Z</option>
+            <option value="status">Playable first</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="results-line" aria-live="polite">
+        <span id="resultsCount"></span>
+        <button class="text-button hidden" id="clearFiltersButton" type="button">Clear filters</button>
+      </div>
+
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="empty-state hidden" id="emptyState">
+        <span aria-hidden="true">¯\\_(ツ)_/¯</span>
+        <h3>No cabinets match that search.</h3>
+        <p>The employee responsible has been lightly scolded.</p>
+      </div>
+    </section>
+
+    <section class="workshop" id="workshop" aria-labelledby="workshop-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Behind the velvet rope</p>
+          <h2 id="workshop-title">The workshop</h2>
+        </div>
+        <p>Current builds, experiments, and ideas that escaped the notes app.</p>
+      </div>
+      <div class="workshop-grid" id="workshopGrid"></div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow">About the operator</p>
+        <h2 id="about-title">Built by Ben at Nobody Creative</h2>
+      </div>
+      <div class="about-copy">
+        <p>
+          Nobody Arcade is a growing collection of compact games made to test mechanics, visual ideas, humor, and the occasional terrible decision.
+        </p>
+        <p>
+          Each project includes a playable build and a short case study covering the concept, process, tools, challenges, and next iteration.
+        </p>
+        <div class="about-links">
+          <a class="button button-primary" href="mailto:hello@example.com">Get in touch</a>
+          <a class="button button-secondary" href="#games">Play a game instead</a>
+        </div>
+        <p class="setup-note">Replace the contact email and game links in <code>data/games.js</code> before launch.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Nobody Creative</span>
+    <span>Please stop shaking the cabinets. They are hosted on Netlify.</span>
+  </footer>
+
+  <dialog class="game-dialog" id="gameDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="Close project details">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <dialog class="play-dialog" id="playDialog" aria-labelledby="playDialogTitle">
+    <div class="play-dialog-header">
+      <div>
+        <p class="eyebrow">Now playing</p>
+        <h2 id="playDialogTitle"></h2>
+      </div>
+      <div class="play-dialog-actions">
+        <a id="openNewTab" class="text-button" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <button class="dialog-close inline" id="playDialogClose" type="button" aria-label="Close game">×</button>
+      </div>
+    </div>
+    <div class="iframe-wrap">
+      <iframe id="gameFrame" title="Game player" allow="fullscreen; autoplay; gamepad" loading="lazy"></iframe>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/games.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

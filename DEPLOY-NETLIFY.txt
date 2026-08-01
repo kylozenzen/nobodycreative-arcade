@@ -1,0 +1,6 @@
+NETLIFY DEPLOY
+
+Drag this ZIP directly into Netlify Deploys, or unzip it and drag the CONTENTS of this folder.
+The ZIP root contains index.html, netlify.toml, assets/, and data/.
+
+Do not place these files inside another parent folder before zipping.

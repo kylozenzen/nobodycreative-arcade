@@ -34,6 +34,8 @@
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="#games">Games</a>
       <a href="#workshop">Workshop</a>
+      <button id="passportButton" type="button">Passport</button>
+      <a class="hidden" id="backRoomNav" href="#backRoom">Back Room</a>
       <a href="#about">About</a>
       <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">Sound: off</button>
       <button class="install-nav hidden" id="installButton" type="button">Install arcade</button>
@@ -62,6 +64,8 @@
         <div id="featuredGame" class="featured-game"></div>
       </aside>
     </section>
+
+    <section class="daily-card" id="dailyChallenge" aria-labelledby="daily-title"></section>
 
     <section class="install-banner hidden" id="installBanner" aria-labelledby="install-title">
       <div class="install-icon" aria-hidden="true">↘</div>
@@ -99,6 +103,7 @@
           <input id="searchInput" type="search" placeholder="Search the arcade…" autocomplete="off" />
         </label>
         <div class="filter-row" id="filterButtons" role="group" aria-label="Filter by genre"></div>
+        <div class="filter-row collection-filters" role="group" aria-label="Filter by collection"><button class="filter-button" type="button" data-collection="favorites" aria-pressed="false">♥ Favorites</button><button class="filter-button" type="button" data-collection="playLater" aria-pressed="false">＋ Play Later</button></div>
         <label class="select-control">
           <span class="sr-only">Sort games</span>
           <select id="sortSelect">
@@ -133,6 +138,7 @@
     </section>
 
     <section class="workshop" id="workshop" aria-labelledby="workshop-title">
+      <span class="employees-clue" aria-label="A flickering Employees Only sign">EMPLOYEES ONLY / door sticks after midnight</span>
       <div class="section-heading">
         <div>
           <p class="eyebrow">Behind the velvet rope</p>
@@ -163,6 +169,7 @@
   <footer>
     <span>© <span id="year"></span> Nobody Creative</span>
     <span>Please stop shaking the cabinets. They are hosted on Netlify.</span>
+    <small class="footer-clue">Inventory note 5B: the logo remembers repeated inspections.</small>
   </footer>
 
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
@@ -170,6 +177,7 @@
     <a href="#games"><span aria-hidden="true">▦</span>Games</a>
     <button id="mobileRandomButton" type="button"><span aria-hidden="true">?</span>Random</button>
     <a href="#workshop"><span aria-hidden="true">⚒</span>Workshop</a>
+    <button id="mobilePassportButton" type="button"><span aria-hidden="true">▤</span>Passport</button>
     <button class="mobile-install hidden" id="mobileInstallButton" type="button"><span aria-hidden="true">↓</span>Install</button>
   </nav>
 
@@ -185,6 +193,9 @@
         <h2 id="playDialogTitle"></h2>
       </div>
       <div class="play-dialog-actions">
+        <button id="restartButton" class="text-button" type="button">Restart</button>
+        <button id="controlsButton" class="text-button" type="button">Controls</button>
+        <button id="playerFavorite" class="text-button" type="button">♡ Favorite</button>
         <button id="fullscreenButton" class="text-button" type="button">Fullscreen</button>
         <a id="openNewTab" class="text-button" href="#" target="_blank" rel="noopener">Open separately ↗</a>
         <button class="dialog-close inline" id="playDialogClose" type="button" aria-label="Close game">×</button>
@@ -194,7 +205,11 @@
       <div class="player-loading" id="playerLoading"><span></span>Loading cabinet…</div>
       <iframe id="gameFrame" title="Game player" allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write" loading="lazy"></iframe>
     </div>
+    <p id="orientationHint" class="orientation-hint hidden">This cabinet works best in landscape. Rotation is optional; management is not.</p>
+    <a id="reportIssue" class="text-button" href="mailto:hello@example.com?subject=Nobody%20Arcade%20issue">Report issue</a>
   </dialog>
+
+  <dialog class="passport-dialog" id="passportDialog" aria-labelledby="passportTitle"><button class="dialog-close" id="passportClose" type="button" aria-label="Close Arcade Passport">×</button><div class="passport-heading"><p class="eyebrow">Local clearance card</p><h2 id="passportTitle">Arcade Passport</h2><p>Management has noticed your commitment to avoiding productivity.</p></div><div id="passportContent"></div></dialog>
 
   <dialog class="install-dialog" id="installDialog" aria-labelledby="installDialogTitle">
     <button class="dialog-close" id="installDialogClose" type="button" aria-label="Close install instructions">×</button>
@@ -218,6 +233,8 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="data/games.js"></script>
+  <script src="data/ranks.js"></script><script src="data/achievements.js"></script><script src="data/challenges.js"></script>
+  <script src="js/storage.js"></script><script src="js/analytics.js"></script><script src="js/progression.js"></script><script src="js/passport.js"></script><script src="js/event-bridge.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

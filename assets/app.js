@@ -13,6 +13,7 @@
     genre: "All",
     query: "",
     sort: "featured",
+    collection: "",
     sound: localStorage.getItem(STORAGE.sound) === "on",
     secretUnlocked: localStorage.getItem(STORAGE.secret) === "yes",
     installPrompt: null,
@@ -105,7 +106,9 @@
     const visible = publicGames.filter((game) => {
       const matchesGenre = state.genre === "All" || game.genres.includes(state.genre);
       const haystack = [game.title, game.tagline, game.description, game.status, ...game.genres, ...game.platform].join(" ").toLowerCase();
-      return matchesGenre && (!query || haystack.includes(query));
+      const saved = ArcadeStorage.load();
+      const matchesCollection = !state.collection || saved[state.collection]?.includes(game.id);
+      return matchesGenre && matchesCollection && (!query || haystack.includes(query));
     });
     visible.sort((a, b) => {
       if (state.sort === "newest") return b.year - a.year || a.title.localeCompare(b.title);
@@ -146,6 +149,8 @@
           <div class="card-actions">
             <button class="button button-primary ${!hasLink(game) ? "button-disabled" : ""}" type="button" data-play="${escapeHtml(game.id)}">${escapeHtml(playButtonLabel(game))}</button>
             <button class="button button-secondary" type="button" data-details="${escapeHtml(game.id)}">Project view</button>
+            <button class="collection-button" type="button" data-favorite="${escapeHtml(game.id)}" aria-pressed="${ArcadeStorage.load().favorites.includes(game.id)}">${ArcadeStorage.load().favorites.includes(game.id) ? "♥ Favorited" : "♡ Favorite"}</button>
+            <button class="collection-button" type="button" data-later="${escapeHtml(game.id)}" aria-pressed="${ArcadeStorage.load().playLater.includes(game.id)}">${ArcadeStorage.load().playLater.includes(game.id) ? "✓ Play Later" : "+ Play Later"}</button>
           </div>
         </div>
       </article>`;
@@ -168,15 +173,10 @@
       </div></article>`).join("");
   }
   function renderContinue() {
-    const game = getRecentGame();
-    elements.continueSection.classList.toggle("hidden", !game);
-    if (!game) return;
-    elements.continueCard.innerHTML = `
-      <article class="continue-card">
-        <div class="continue-art"><img src="${escapeHtml(posterFor(game))}" alt="" loading="lazy" /></div>
-        <div><p class="eyebrow">Last cabinet visited</p><h3>${escapeHtml(game.title)}</h3><p>${escapeHtml(game.tagline)}</p></div>
-        <button class="button button-primary" type="button" data-play="${escapeHtml(game.id)}">Continue</button>
-      </article>`;
+    const saved=ArcadeStorage.load(); const recent=Object.entries(saved.passport.games).sort((a,b)=>new Date(b[1].lastPlayed)-new Date(a[1].lastPlayed)).slice(0,3).map(([id,stats])=>({game:games.find(g=>g.id===id),stats})).filter(x=>x.game);
+    elements.continueSection.classList.toggle("hidden", !recent.length);
+    if (!recent.length) return;
+    elements.continueCard.innerHTML = recent.map(({game,stats})=>`<article class="continue-card"><div class="continue-art"><img src="${escapeHtml(posterFor(game))}" alt="" loading="lazy" /></div><div><p class="eyebrow">${new Date(stats.lastPlayed).toLocaleDateString()} · ${stats.launches} launch${stats.launches===1?"":"es"}</p><h3>${escapeHtml(game.title)}</h3><p>${escapeHtml(game.platform.join(" / "))}${saved.favorites.includes(game.id)?" · ♥ Favorite":""}</p></div><button class="button button-primary" type="button" data-play="${escapeHtml(game.id)}">Continue</button></article>`).join("")+`<button class="text-button" type="button" data-open-passport>View complete activity history →</button>`;
   }
   function renderBackRoom() {
     elements.backRoom.classList.toggle("hidden", !state.secretUnlocked);
@@ -206,6 +206,7 @@
         <div class="dialog-footer">
           <button class="button button-primary ${!hasLink(game) ? "button-disabled" : ""}" type="button" data-play="${escapeHtml(game.id)}">${escapeHtml(playButtonLabel(game))}</button>
           <button class="button button-secondary" type="button" data-share="${escapeHtml(game.id)}">Share game</button>
+          <button class="button button-secondary" type="button" data-favorite="${escapeHtml(game.id)}">${ArcadeStorage.load().favorites.includes(game.id)?"♥ Favorited":"♡ Favorite"}</button><button class="button button-secondary" type="button" data-later="${escapeHtml(game.id)}">${ArcadeStorage.load().playLater.includes(game.id)?"✓ Play Later":"+ Play Later"}</button>
         </div>
       </div>`;
   }
@@ -213,6 +214,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     elements.dialogContent.innerHTML = projectDialogMarkup(game);
+    ArcadeProgress.caseStudy(game);
     elements.gameDialog.showModal();
     chirp(360, .05);
   }
@@ -232,7 +234,8 @@
       return;
     }
     if (elements.gameDialog.open) elements.gameDialog.close();
-    markPlayed(game); chirp(520, .08);
+    markPlayed(game); ArcadeProgress.launch(game); chirp(520, .08);
+    if(game.id === "tape-panic") { window.location.assign(game.playUrl); return; }
     if (game.embed) {
       elements.playDialogTitle.textContent = game.title;
       elements.openNewTab.href = game.playUrl;
@@ -282,7 +285,8 @@
   }
 
   function startPreview(card) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const settings=ArcadeStorage.load().settings;
+    if (settings.dataSaver || !settings.autoplay || settings.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const video = card?.querySelector("video[data-preview-src]");
     if (!video) return;
     if (!video.src) video.src = video.dataset.previewSrc;
@@ -366,6 +370,8 @@
     }
     state.secretUnlocked = true;
     localStorage.setItem(STORAGE.secret, "yes");
+    ArcadeProgress.backRoom();
+    document.querySelector("#backRoomNav")?.classList.remove("hidden");
     renderStats(); renderBackRoom();
     elements.unlockFlash.classList.remove("hidden");
     chirp(880, .12);
@@ -395,9 +401,14 @@
     const detailsTarget = event.target.closest("[data-details]");
     const genreTarget = event.target.closest("[data-genre]");
     const shareTarget = event.target.closest("[data-share]");
+    const favoriteTarget=event.target.closest("[data-favorite]"); const laterTarget=event.target.closest("[data-later]"); const passportTarget=event.target.closest("[data-open-passport]"); const collectionTarget=event.target.closest("[data-collection]");
     if (playTarget) launchGame(playTarget.dataset.play);
     if (detailsTarget) openDetails(detailsTarget.dataset.details);
     if (shareTarget) shareGame(shareTarget.dataset.share);
+    if(favoriteTarget){const game=games.find(g=>g.id===favoriteTarget.dataset.favorite);if(game){ArcadeProgress.favorite(game);renderGames();renderFeatured();renderContinue();showToast("Favorites updated.")}}
+    if(laterTarget){const game=games.find(g=>g.id===laterTarget.dataset.later);if(game){ArcadeProgress.later(game);renderGames();showToast("Play Later updated.")}}
+    if(passportTarget) openPassport();
+    if(collectionTarget){state.collection=state.collection===collectionTarget.dataset.collection?"":collectionTarget.dataset.collection;document.querySelectorAll("[data-collection]").forEach(b=>{const on=b.dataset.collection===state.collection;b.classList.toggle("active",on);b.setAttribute("aria-pressed",on)});renderGames()}
     if (genreTarget) {
       state.genre = genreTarget.dataset.genre;
       renderFilters(); renderGames(); chirp(300, .04);
@@ -430,6 +441,9 @@
   elements.fullscreenButton.addEventListener("click", async () => {
     try { await elements.iframeWrap.requestFullscreen(); } catch { showToast("Fullscreen was blocked by the browser."); }
   });
+  document.querySelector("#restartButton").addEventListener("click",()=>{const src=elements.gameFrame.src;elements.gameFrame.src="about:blank";requestAnimationFrame(()=>elements.gameFrame.src=src)});
+  document.querySelector("#controlsButton").addEventListener("click",()=>showToast("Controls vary by cabinet. Keyboard, pointer, and touch support are listed on each project."));
+  document.querySelector("#playerFavorite").addEventListener("click",()=>{const game=games.find(g=>g.title===elements.playDialogTitle.textContent);if(game)ArcadeProgress.favorite(game)});
   elements.soundToggle.addEventListener("click", () => {
     state.sound = !state.sound; localStorage.setItem(STORAGE.sound, state.sound ? "on" : "off"); updateSoundButton(); chirp(660, .07);
   });
@@ -439,6 +453,8 @@
   elements.installDismiss.addEventListener("click", () => { localStorage.setItem(STORAGE.installDismissed, "yes"); updateInstallUI(); });
   elements.installDialogClose.addEventListener("click", () => elements.installDialog.close());
   elements.secretTrigger.addEventListener("click", registerSecretTap);
+  function openPassport(){ArcadePassport.render();document.querySelector("#passportDialog").showModal()}
+  document.querySelector("#passportButton").addEventListener("click",openPassport);document.querySelector("#mobilePassportButton").addEventListener("click",openPassport);document.querySelector("#passportClose").addEventListener("click",()=>document.querySelector("#passportDialog").close());
   elements.unlockFlash.addEventListener("click", () => elements.unlockFlash.classList.add("hidden"));
   window.addEventListener("hashchange", handleHash);
   window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); state.installPrompt = event; updateInstallUI(); });
@@ -448,6 +464,12 @@
     window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js").catch(() => {}));
   }
 
+  ArcadeProgress.init();
+  state.secretUnlocked=state.secretUnlocked||ArcadeStorage.load().passport.backRoomUnlocked;
+  if(state.secretUnlocked){localStorage.setItem(STORAGE.secret,"yes");document.querySelector("#backRoomNav")?.classList.remove("hidden")}
+  function renderDaily(){const c=ArcadeProgress.today(),row=ArcadeStorage.load().challenges[c.date];document.querySelector("#dailyChallenge").innerHTML=`<div><p class="eyebrow">Daily assignment · ${escapeHtml(c.date)}</p><h2 id="daily-title">${escapeHtml(c.title)}</h2><p>${escapeHtml(c.description)}</p></div><div class="daily-progress"><strong>${row.completed?"STAMPED ✓":`${row.progress||0} / ${c.target}`}</strong><div class="xp-track"><span style="width:${Math.min(100,(row.progress||0)/c.target*100)}%"></span></div><small>${c.xp} XP</small></div>`}
+  window.addEventListener("arcade-state",()=>{renderDaily();renderContinue()});window.addEventListener("arcade-achievement",e=>showToast(`Achievement unlocked: ${e.detail.name}`));window.addEventListener("arcade-rank",e=>{showToast(`Token privileges upgraded: ${e.detail.rank}`);document.body.classList.add("rank-up");setTimeout(()=>document.body.classList.remove("rank-up"),900)});
+  document.querySelector("#workshop").addEventListener("focusin",()=>{const v=ArcadeStorage.load();ArcadeProgress.challenge(v,"workshop");ArcadeStorage.save(v)},{once:true});
   elements.year.textContent = new Date().getFullYear();
-  renderStats(); renderFeatured(); renderFilters(); renderGames(); renderWorkshop(); renderContinue(); renderBackRoom(); updateSoundButton(); updateInstallUI(); handleHash();
+  renderStats(); renderFeatured(); renderFilters(); renderGames(); renderWorkshop(); renderContinue(); renderBackRoom(); renderDaily(); updateSoundButton(); updateInstallUI(); handleHash();
 })();

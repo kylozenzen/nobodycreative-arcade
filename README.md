@@ -1,112 +1,93 @@
-# Nobody Arcade — Phase 1.5
+# Nobody Arcade — Phase 2
 
-A deployable, mobile-first, data-driven arcade and playable portfolio for Nobody Creative.
+A mobile-first, installable static arcade, playable portfolio, and suspicious late-night workplace. Phase 2 adds a shared, account-free progression layer while preserving the Phase 1.5.2 full-page Tape Panic repair.
 
-## What Phase 1.5 adds
+## Phase 2 features
 
-- Cabinet-style game cards with artwork, screen frames, joystick controls, and status marquees
-- Static poster art for every current project
-- Optional short gameplay-video previews that load only when needed
-- Mobile-first layout with a sticky bottom navigation bar
-- Full-screen mobile game player with deferred iframe loading
-- Touch-ready and session-length labels
-- Installable Progressive Web App (PWA)
-- Android/Chrome installation prompt and iPhone/iPad instructions
-- Home-screen icons, splash colors, service worker, offline shell, and app shortcuts
-- Hidden Back Room unlocked through an easter egg
-- A complete secret mobile game: **Tape Panic**
-- Existing search, filters, project case studies, sharing, recent plays, workshop, and interface sounds
+- Local Arcade Passport with editable nickname, generated arcade ID, XP, eight configurable ranks, visit history, activity, collections, and settings.
+- Twelve configurable achievements, deterministic daily assignments, anti-farming XP awards, rank-up feedback, favorites, Play Later, and richer Continue Playing cards.
+- A unified lazy-loaded player shell, validated cross-game event bridge, local analytics hooks, import/export, and a persistent Back Room unlock.
+- Data Saver, reduced-motion support, lazy media, network-first application assets, cache cleanup, responsive controls, and accessible dialogs.
 
-## Deploy to Netlify
+## Storage and privacy
 
-This folder is already the publish root. `index.html` is at the top level.
+`js/storage.js` owns the versioned `nobodyArcade.phase2` localStorage record (`schemaVersion: 2`). No account, device fingerprint, database, paid service, or third-party tracker is used. Activity is capped at 50 entries. Export writes a portable JSON document containing its schema/export dates, Passport, achievements, activity, favorites, Play Later, settings, and challenge history. Import checks the schema and required structures, then asks before replacement. Legacy Back Room keys remain supported so Phase 1.5 players keep access.
 
-1. Zip the contents of this folder—not a parent folder.
-2. Open the site in Netlify.
-3. Go to **Deploys** and upload the ZIP as a manual deploy.
-4. Visit the HTTPS Netlify URL once deployment finishes.
+To clear progress, use **Passport → Reset progress** (confirmation required), or remove `nobodyArcade.phase2` in browser storage. Future migrations should be added to `load()` in `js/storage.js` and increment `VERSION`; do not silently discard an older record.
 
-No build command is required.
+## Content configuration
 
-## Connect a game
+### Add a game
 
-Open `data/games.js` and update:
+Add an object to `data/games.js`, retaining the documented fields. Never invent a URL: leave `playUrl` empty to preserve prototype/development behavior. `embed: true` uses the player iframe only after explicit launch. Use `embed: false` for external/full-page games. Tape Panic intentionally remains `embed: false`.
 
-```js
-playUrl: "https://your-game.netlify.app",
-embed: true
-```
+Preview paths are `poster`, optional `previewVideo`, and `screenshots`. Replace the files at those paths (or update the paths). Posters are lazy-loaded; videos use `preload="none"`, and Data Saver prevents playback.
 
-Use `embed: false` when the game host blocks iframe embedding.
+### Add an achievement
 
-## Replace cabinet artwork with a real screenshot
+Add an entry to `data/achievements.js` with `id`, `name`, `description`, `icon`, `xp`, `condition`, and any condition target. Set `secret: true` to obscure it until unlocked. Add a predicate branch to `condition()` in `js/progression.js` for a new condition type.
 
-Every game currently has branded preview art here:
+### Add a daily challenge
 
-```text
-assets/games/GAME-SLUG/poster.svg
-assets/games/GAME-SLUG/screen.svg
-```
+Add a definition to `data/challenges.js` with a stable `id`, `title`, `description`, `type`, `target`, and `xp` (plus optional genre/game criteria). A hash of the user's local `YYYY-MM-DD` selects the same entry all day without a server. Add event matching in `challenge()` for new criteria.
 
-A clean 16:9 `.webp`, `.jpg`, or `.png` works best. Then update the game entry:
+## Game event bridge
+
+An embedded game may report `game_started`, `game_completed`, `score_submitted`, `achievement_triggered`, `level_completed`, or `daily_challenge_progress`. The hub validates message shape, known game ID/event, source window, and configured URL origin.
 
 ```js
-poster: "assets/games/high-stakes-truth/poster.webp",
-screenshots: [
-  "assets/games/high-stakes-truth/screenshot-1.webp",
-  "assets/games/high-stakes-truth/screenshot-2.webp"
-]
+window.parent.postMessage(
+  {
+    type: "NOBODY_ARCADE_EVENT",
+    gameId: "example-game",
+    event: "score_submitted",
+    payload: { score: 1200 }
+  },
+  window.location.origin
+);
 ```
 
-Recommended screenshot size: **1280×720** or **1600×900**.
+For a game hosted on another approved domain, replace `window.location.origin` with the **hub's exact origin**, such as `https://arcade.example.com`, and configure that game's exact HTTPS URL in `data/games.js`. Do not use `"*"`. Non-integrated games still count at launch.
 
-## Add a moving gameplay preview
+## Analytics adapter
 
-Record 4–8 seconds of gameplay with no audio. Export a compact MP4 or WebM—ideally under 2 MB—and add:
+`trackArcadeEvent(name, detail)` stores the latest 100 first-party events locally and logs on localhost. No external scripts are included. To connect Plausible, Google Analytics, or another consent-appropriate provider, listen for `arcade-analytics` or extend `js/analytics.js` to forward allow-listed event names after the provider is initialized. Keep the local call sites provider-agnostic.
 
-```js
-previewVideo: "assets/games/high-stakes-truth/preview.mp4"
-```
+## Local PWA testing
 
-The hub keeps clips unloaded until someone hovers, focuses, or scrolls the cabinet prominently into view on mobile. Data Saver and reduced-motion preferences are respected.
-
-## Mobile installation
-
-- On supported Chrome/Android browsers, the hub shows an **Install arcade** button when the browser says the PWA is ready.
-- On iPhone and iPad, the button opens the Safari steps: **Share → Add to Home Screen → Add**.
-- Installation requires HTTPS. Netlify supplies HTTPS automatically.
-- Browsers decide exactly when native installation becomes available, so the prompt may not appear on the first instant of a brand-new visit.
-
-## The hidden game
-
-The Back Room is intentionally absent from normal navigation. It can be discovered through repeated interaction with the Nobody Arcade logo or a familiar old-school keyboard sequence. The unlock persists in local storage.
-
-The secret game files live in:
-
-```text
-secret/index.html
-secret/styles.css
-secret/game.js
-```
-
-## Update contact information
-
-In `index.html`, replace:
-
-```html
-mailto:hello@example.com
-```
-
-## Local preview
-
-PWA installation and the service worker require a local server rather than opening the file directly:
+Service workers require HTTP(S), not `file://`:
 
 ```bash
-python -m http.server 8080
+python3 -m http.server 4173
 ```
 
-Then visit `http://localhost:8080`.
+Open `http://localhost:4173`, use browser application tools to inspect the manifest/service worker, then test the install prompt or Add to Home Screen. Test a production build in standalone mode. The versioned service worker uses network-first delivery for HTML/JS/CSS and `/secret/*`, deletes obsolete caches on activation, and never depends on a cached Tape Panic script when the network works.
 
-## Add another game
+## Tape Panic release blocker
 
-Duplicate an object in `data/games.js`, use a unique `id`, and update its content and media paths. The hub automatically updates the filters, counts, cards, workshop, recent plays, and project dialog.
+`/secret/index.html` is a same-tab full-page game with an Arcade return link. Its canvas uses an internal rounded-path fallback (not `roundRect`), guarded storage/audio, one tracked animation frame, ResizeObserver plus viewport/orientation recovery, non-scrolling pointer controls, and an exposed development test surface at `window.__TAPE_PANIC_TEST__`. Do not put it back in the iframe without equivalent real-browser coverage.
+
+## Netlify deployment
+
+The repository root is deployable as-is. Either connect it to Netlify or generate a drag-and-drop archive locally:
+
+```bash
+./scripts/package-netlify.sh
+```
+
+The script creates `nobody-arcade-phase2-netlify.zip` with `index.html`, `_redirects`, `netlify.toml`, the manifest, and service worker at the archive root. The generated ZIP is intentionally ignored by Git because pull-request systems may reject binary files; attach it to a release or upload it directly to Netlify rather than committing it. After deployment, verify HTTPS, installability, cache update behavior, and `/secret/index.html` directly.
+
+## Architecture
+
+- `data/`: games, ranks, achievements, daily challenge pool
+- `js/storage.js`: schema, validation, persistence, export
+- `js/progression.js`: XP, ranks, challenges, activity, achievements
+- `js/passport.js`: Passport/settings/import/export UI
+- `js/event-bridge.js`: trusted iframe messages
+- `js/analytics.js`: provider-neutral local event hook
+- `assets/app.js`: arcade floor and existing UI orchestration
+- `secret/`: standalone Tape Panic
+
+## Phase 3 recommendations
+
+Optional encrypted cloud sync, explicit multi-profile support, signed cross-origin event tokens, richer per-game saves, opt-in global leaderboards, automated visual regression CI, and a consent-managed analytics adapter.

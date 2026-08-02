@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" role="img" aria-labelledby="t d">
+<title id="t">Plot Twisted movie trivia preview art</title><desc id="d">Velvet cinema cabinet artwork for Plot Twisted.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4a1216"/><stop offset=".62" stop-color="#160b0d"/><stop offset="1" stop-color="#080609"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#fcebc0" stop-opacity=".42"/><stop offset="1" stop-color="#fcebc0" stop-opacity="0"/></radialGradient>
+  <pattern id="bulbs" width="44" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="4" fill="#fcebc0"/><circle cx="33" cy="11" r="4" fill="#e4b34c"/></pattern>
+</defs>
+<rect width="1000" height="625" fill="url(#bg)"/>
+<circle cx="760" cy="240" r="350" fill="url(#light)"/>
+<path d="M0 0h170l78 625H0z" fill="#6d171d" opacity=".8"/><path d="M1000 0H830l-78 625h248z" fill="#6d171d" opacity=".8"/>
+<rect x="42" y="35" width="916" height="28" rx="14" fill="url(#bulbs)" opacity=".85"/>
+<rect x="42" y="562" width="916" height="28" rx="14" fill="url(#bulbs)" opacity=".7"/>
+<text x="500" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="800" letter-spacing="7" fill="#e4b34c">NOW SHOWING</text>
+<text x="500" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="100" font-weight="1000" letter-spacing="-5" fill="#fcebc0">PLOT</text>
+<text x="500" y="370" text-anchor="middle" font-family="system-ui,sans-serif" font-size="100" font-weight="1000" letter-spacing="-5" fill="#ff4d8d">TWISTED</text>
+<path d="M395 430h210l28 58H367z" fill="#0e0708" stroke="#e4b34c" stroke-width="4"/><circle cx="425" cy="459" r="10" fill="#fcebc0"/><circle cx="470" cy="459" r="10" fill="#fcebc0"/><circle cx="515" cy="459" r="10" fill="#fcebc0"/><circle cx="560" cy="459" r="10" fill="#fcebc0"/>
+<text x="500" y="535" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="800" letter-spacing="3" fill="#e4b34c">ONE UNHINGED LINE. NAME THE MOVIE.</text>
+</svg>

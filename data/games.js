@@ -2,6 +2,7 @@
   NOBODY ARCADE GAME DATA
 
   playUrl: deployed game URL or a local path.
+  sourceUrl: optional public GitHub repository shown in Project View.
   embed: true opens in the arcade player; false opens a new tab.
   poster: static 16:9 image shown in the cabinet.
   previewVideo: optional short muted MP4/WebM. It loads only on interaction.
@@ -19,7 +20,7 @@ window.ARCADE_GAMES = [
     description: "A wager-driven true-or-false game where confidence matters almost as much as knowing the answer.",
     longDescription: "High Stakes Truth combines rapid-fire trivia with a casino-style risk system. Players choose how much confidence to place behind each answer, creating tension even when the question looks easy.",
     genres: ["Trivia", "Strategy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
-    featured: true, workshop: false, playUrl: "", embed: true, mobileOptimized: true, session: "3–6 min",
+    featured: true, workshop: false, playUrl: "https://highstakestruth.netlify.app", embed: true, mobileOptimized: true, session: "3–6 min",
     accent: "orange", icon: "◆", poster: "assets/games/high-stakes-truth/poster.svg", previewVideo: "", screenshots: ["assets/games/high-stakes-truth/screen.svg"],
     tools: ["HTML", "CSS", "JavaScript"], role: "Concept, game design, writing, UI and development",
     challenge: "Make true-or-false trivia feel strategic instead of disposable.",
@@ -27,12 +28,25 @@ window.ARCADE_GAMES = [
     next: "Expand the clue library, add daily challenges and create clearer onboarding for first-time players."
   },
   {
+    id: "plot-twisted-movies", title: "Plot Twisted", shortTitle: "Plot Twisted",
+    tagline: "Name the movie from one beautifully unhelpful clue.",
+    description: "A cinema-styled movie trivia game where the clues are unhinged, the hints are suspicious, and the seats are your keyboard.",
+    longDescription: "Plot Twisted turns movie plots into deliberately warped one-line clues inside a playable digital theater. Players pick a screening, use limited hints and race toward the moment where nonsense suddenly becomes obvious.",
+    genres: ["Trivia", "Movies"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
+    featured: true, workshop: false, playUrl: "https://plot-twisted.netlify.app", sourceUrl: "https://github.com/kylozenzen/plot-twisted-2026", embed: true, mobileOptimized: true, session: "3–8 min",
+    accent: "velvet", icon: "◉", poster: "assets/games/plot-twisted-movies/poster.svg", previewVideo: "", screenshots: ["assets/games/plot-twisted-movies/screen.svg"],
+    tools: ["HTML", "CSS", "JavaScript", "Movie clue library", "PWA"], role: "Concept, game design, writing, visual direction, UI and development",
+    challenge: "Build a movie-trivia format with enough personality to feel like entering a theater rather than answering another quiz.",
+    solution: "Framed the game as a velvet-and-brass cinema experience with selectable screenings, limited hints and compact rounds designed for mobile play.",
+    next: "Expand the screening library, tune clue difficulty and add rotating featured films."
+  },
+  {
     id: "plot-twisted-gaming", title: "Plot Twisted Gaming", shortTitle: "Plot Twisted",
     tagline: "Name the game from a painfully bad description.",
     description: "Video-game trivia built around awkwardly accurate plot summaries and fuzzy answer matching.",
     longDescription: "Plot Twisted turns recognizable games into deliberately unhelpful descriptions. The fun comes from the instant jump between confusion and recognition.",
     genres: ["Trivia", "Comedy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
-    featured: true, workshop: false, playUrl: "", embed: true, mobileOptimized: true, session: "2–5 min",
+    featured: true, workshop: false, playUrl: "https://plot-twisted-games.netlify.app", embed: true, mobileOptimized: true, session: "2–5 min",
     accent: "purple", icon: "?", poster: "assets/games/plot-twisted-gaming/poster.svg", previewVideo: "", screenshots: ["assets/games/plot-twisted-gaming/screen.svg"],
     tools: ["HTML", "CSS", "JavaScript", "JSON clue library"], role: "Concept, writing, clue system, UI and development",
     challenge: "Create hundreds of clues that are funny without becoming impossible.",
@@ -45,7 +59,7 @@ window.ARCADE_GAMES = [
     description: "A fast arcade game about surviving the endless acceleration of the social feed.",
     longDescription: "Feed Velocity transforms algorithm anxiety into a quick reflex game. The player jumps obstacles, builds combos and races through a feed that never plans to calm down.",
     genres: ["Arcade", "Comedy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
-    featured: true, workshop: false, playUrl: "", embed: true, mobileOptimized: true, session: "1–3 min",
+    featured: true, workshop: false, playUrl: "https://feedvelocity.netlify.app", embed: true, mobileOptimized: true, session: "1–3 min",
     accent: "cyan", icon: "↑", poster: "assets/games/feed-velocity/poster.svg", previewVideo: "", screenshots: ["assets/games/feed-velocity/screen.svg"],
     tools: ["HTML", "CSS", "JavaScript", "RSS"], role: "Concept, game design, UI and development",
     challenge: "Teach a fast game quickly while preserving the joke and momentum.",
@@ -58,7 +72,7 @@ window.ARCADE_GAMES = [
     description: "A mobile-first snowboard trick run with swipes, spins, grabs, flips and a ninety-second clock.",
     longDescription: "Whiteout explores gesture controls for a compact action-sports game. The focus is readable movement, satisfying trick chains and short sessions that invite one more run.",
     genres: ["Sports", "Arcade"], status: "In development", platform: ["Mobile"], year: 2026,
-    featured: false, workshop: true, playUrl: "", embed: true, mobileOptimized: true, session: "90 sec",
+    featured: false, workshop: true, playUrl: "https://project-whiteout.netlify.app", embed: true, mobileOptimized: true, session: "90 sec",
     accent: "ice", icon: "▲", poster: "assets/games/whiteout/poster.svg", previewVideo: "", screenshots: ["assets/games/whiteout/screen.svg"],
     tools: ["HTML", "CSS", "JavaScript", "Touch controls"], role: "Concept, control design, UI and development",
     challenge: "Fit carving, crouching, grabs, spins and flips into intuitive mobile controls.",
@@ -132,3 +146,30 @@ window.ARCADE_GAMES = [
     next: "Add rare golden tapes, cabinet-specific achievements and more hidden routes into the Back Room."
   }
 ];
+
+
+// Progressive enhancement: expose source links without changing the Phase 1.5 dialog layout.
+document.addEventListener("DOMContentLoaded", () => {
+  const dialogContent = document.querySelector("#dialogContent");
+  if (!dialogContent || typeof MutationObserver === "undefined") return;
+
+  const addSourceLink = () => {
+    const title = dialogContent.querySelector("#dialogTitle")?.textContent?.trim();
+    const footer = dialogContent.querySelector(".dialog-footer");
+    if (!title || !footer || footer.querySelector("[data-source-link]")) return;
+
+    const game = window.ARCADE_GAMES.find((item) => item.title === title && item.sourceUrl);
+    if (!game) return;
+
+    const link = document.createElement("a");
+    link.className = "button button-secondary";
+    link.href = game.sourceUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.dataset.sourceLink = game.id;
+    link.textContent = "Source code ↗";
+    footer.insertBefore(link, footer.lastElementChild);
+  };
+
+  new MutationObserver(addSourceLink).observe(dialogContent, { childList: true, subtree: true });
+});

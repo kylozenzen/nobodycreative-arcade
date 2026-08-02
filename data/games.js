@@ -123,7 +123,7 @@ window.ARCADE_GAMES = [
     description: "A hidden one-button score chase built directly into Nobody Arcade.",
     longDescription: "Tape Panic is the arcade’s secret cabinet: a tiny mobile-friendly reflex game about catching good tapes, avoiding cursed ones and discovering how long a joke can remain mechanically viable.",
     genres: ["Arcade", "Secret"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
-    featured: false, workshop: false, playUrl: "secret/index.html", embed: false, mobileOptimized: true, session: "60 sec",
+    featured: false, workshop: false, playUrl: "secret/index.html", embed: true, mobileOptimized: true, session: "60 sec",
     accent: "secret", icon: "▰", poster: "assets/games/tape-panic/poster.svg", previewVideo: "", screenshots: ["assets/games/tape-panic/screen.svg"],
     secret: true,
     tools: ["HTML", "CSS", "JavaScript", "Local high score"], role: "Secret game concept, design and development",

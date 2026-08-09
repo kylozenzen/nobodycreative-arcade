@@ -1,4 +1,4 @@
-const CACHE = "nobody-arcade-v1-5-6";
+const CACHE = "nobody-arcade-v1-5-7";
 const CORE = [
   "./", "./index.html", "./assets/styles.css", "./assets/app.js", "./data/games.js",
   "./manifest.webmanifest", "./assets/favicon.svg", "./assets/share-card.svg",

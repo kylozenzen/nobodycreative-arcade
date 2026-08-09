@@ -21,7 +21,7 @@ window.ARCADE_GAMES = [
     longDescription: "High Stakes Truth combines rapid-fire trivia with a casino-style risk system. Players choose how much confidence to place behind each answer, creating tension even when the question looks easy.",
     genres: ["Trivia", "Strategy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
     featured: true, workshop: false, playUrl: "https://highstakestruth.netlify.app", embed: true, mobileOptimized: true, session: "3–6 min",
-    accent: "orange", icon: "◆", poster: "assets/games/high-stakes-truth/poster.svg", previewVideo: "", screenshots: ["assets/games/high-stakes-truth/screen.svg"],
+    accent: "orange", icon: "◆", poster: "assets/games/high-stakes-truth/poster.webp", previewVideo: "", screenshots: ["assets/games/high-stakes-truth/poster.webp"],
     tools: ["HTML", "CSS", "JavaScript"], role: "Concept, game design, writing, UI and development",
     challenge: "Make true-or-false trivia feel strategic instead of disposable.",
     solution: "Added percentage-based wagering, round modifiers, escalating tension and a table-first presentation.",

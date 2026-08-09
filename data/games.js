@@ -34,7 +34,7 @@ window.ARCADE_GAMES = [
     longDescription: "Plot Twisted turns movie plots into deliberately warped one-line clues inside a playable digital theater. Players pick a screening, use limited hints and race toward the moment where nonsense suddenly becomes obvious.",
     genres: ["Trivia", "Movies"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
     featured: true, workshop: false, playUrl: "https://plot-twisted.netlify.app", sourceUrl: "https://github.com/kylozenzen/plot-twisted-2026", embed: true, mobileOptimized: true, session: "3–8 min",
-    accent: "velvet", icon: "◉", poster: "assets/games/plot-twisted-movies/poster.svg", previewVideo: "", screenshots: ["assets/games/plot-twisted-movies/screen.svg"],
+    accent: "velvet", icon: "◉", poster: "assets/games/plot-twisted-movies/plot-twisted-movies-poster.webp", previewVideo: "", screenshots: ["assets/games/plot-twisted-movies/plot-twisted-movies-poster.webp"],
     tools: ["HTML", "CSS", "JavaScript", "Movie clue library", "PWA"], role: "Concept, game design, writing, visual direction, UI and development",
     challenge: "Build a movie-trivia format with enough personality to feel like entering a theater rather than answering another quiz.",
     solution: "Framed the game as a velvet-and-brass cinema experience with selectable screenings, limited hints and compact rounds designed for mobile play.",

@@ -147,6 +147,9 @@ window.ARCADE_GAMES = [
   }
 ];
 
+// Keep these projects in the data file, but remove them from the live arcade for now.
+const HIDDEN_GAME_IDS = new Set(["animal-puzzle", "late-fees", "nobodys-wizard"]);
+window.ARCADE_GAMES = window.ARCADE_GAMES.filter((game) => !HIDDEN_GAME_IDS.has(game.id));
 
 // Progressive enhancement: expose source links without changing the Phase 1.5 dialog layout.
 document.addEventListener("DOMContentLoaded", () => {

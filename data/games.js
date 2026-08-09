@@ -47,7 +47,7 @@ window.ARCADE_GAMES = [
     longDescription: "Plot Twisted turns recognizable games into deliberately unhelpful descriptions. The fun comes from the instant jump between confusion and recognition.",
     genres: ["Trivia", "Comedy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
     featured: true, workshop: false, playUrl: "https://plot-twisted-games.netlify.app", embed: true, mobileOptimized: true, session: "2–5 min",
-    accent: "purple", icon: "?", poster: "assets/games/plot-twisted-gaming/poster.svg", previewVideo: "", screenshots: ["assets/games/plot-twisted-gaming/screen.svg"],
+    accent: "purple", icon: "?", poster: "assets/games/plot-twisted-gaming/poster.webp", previewVideo: "", screenshots: ["assets/games/plot-twisted-gaming/poster.webp"],
     tools: ["HTML", "CSS", "JavaScript", "JSON clue library"], role: "Concept, writing, clue system, UI and development",
     challenge: "Create hundreds of clues that are funny without becoming impossible.",
     solution: "Used a scalable clue file, forgiving fuzzy matching and a modern game library focused on the last 25–30 years.",
@@ -60,7 +60,7 @@ window.ARCADE_GAMES = [
     longDescription: "Feed Velocity transforms algorithm anxiety into a quick reflex game. The player jumps obstacles, builds combos and races through a feed that never plans to calm down.",
     genres: ["Arcade", "Comedy"], status: "Playable", platform: ["Mobile", "Desktop"], year: 2026,
     featured: true, workshop: false, playUrl: "https://feedvelocity.netlify.app", embed: true, mobileOptimized: true, session: "1–3 min",
-    accent: "cyan", icon: "↑", poster: "assets/games/feed-velocity/poster.svg", previewVideo: "", screenshots: ["assets/games/feed-velocity/screen.svg"],
+    accent: "cyan", icon: "↑", poster: "assets/games/feed-velocity/poster.webp", previewVideo: "", screenshots: ["assets/games/feed-velocity/poster.webp"],
     tools: ["HTML", "CSS", "JavaScript", "RSS"], role: "Concept, game design, UI and development",
     challenge: "Teach a fast game quickly while preserving the joke and momentum.",
     solution: "Built a safe tutorial, combo multiplier, finish fanfare, mobile haptics and an RSS-powered between-level reader.",
@@ -150,6 +150,19 @@ window.ARCADE_GAMES = [
 // Keep these projects in the data file, but remove them from the live arcade for now.
 const HIDDEN_GAME_IDS = new Set(["animal-puzzle", "late-fees", "nobodys-wizard"]);
 window.ARCADE_GAMES = window.ARCADE_GAMES.filter((game) => !HIDDEN_GAME_IDS.has(game.id));
+
+// Until the two new binary poster files are uploaded, gracefully fall back to the existing SVG artwork.
+const POSTER_FALLBACKS = {
+  "/assets/games/plot-twisted-gaming/poster.webp": "/assets/games/plot-twisted-gaming/poster.svg",
+  "/assets/games/feed-velocity/poster.webp": "/assets/games/feed-velocity/poster.svg"
+};
+window.addEventListener("error", (event) => {
+  const image = event.target;
+  if (!(image instanceof HTMLImageElement)) return;
+  const pathname = new URL(image.src, window.location.href).pathname;
+  const fallback = POSTER_FALLBACKS[pathname];
+  if (fallback) image.src = fallback;
+}, true);
 
 // Progressive enhancement: expose source links without changing the Phase 1.5 dialog layout.
 document.addEventListener("DOMContentLoaded", () => {

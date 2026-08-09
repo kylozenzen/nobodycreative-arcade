@@ -1,11 +1,11 @@
-const CACHE = "nobody-arcade-v1-5-4";
+const CACHE = "nobody-arcade-v1-5-5";
 const CORE = [
   "./", "./index.html", "./assets/styles.css", "./assets/app.js", "./data/games.js",
   "./manifest.webmanifest", "./assets/favicon.svg", "./assets/share-card.svg",
   "./assets/icons/icon-192.png", "./assets/icons/icon-512.png",
   "./secret/index.html", "./secret/game.js", "./secret/styles.css",
-  "./assets/games/plot-twisted-movies/poster.svg",
-  "./assets/games/plot-twisted-movies/screen.svg"
+  "./assets/games/plot-twisted-movies/plot-twisted-movies-poster.webp",
+  "./assets/games/high-stakes-truth/poster.webp"
 ];
 
 self.addEventListener("install", (event) => {

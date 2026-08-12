@@ -63,3 +63,8 @@ window.addEventListener("keydown",function(e){
 document.getElementById("startBtn").addEventListener("click",function(){audioInit();resetRun()});
 document.getElementById("restartBtn").addEventListener("click",function(){audioInit();resetRun()});
 window.startBuckets=resetRun;
+
+var bagScript=document.createElement("script");
+bagScript.src="./game-5.js";
+bagScript.defer=false;
+document.body.appendChild(bagScript);

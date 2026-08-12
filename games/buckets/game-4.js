@@ -1,3 +1,36 @@
+function lockMobileBrowser(){
+  var root=document.documentElement,body=document.body,app=document.getElementById("app");
+  [root,body,app,canvas].forEach(function(el){
+    if(!el)return;
+    el.style.webkitUserSelect="none";
+    el.style.userSelect="none";
+    el.style.webkitTouchCallout="none";
+    el.style.webkitTapHighlightColor="transparent";
+    el.style.overscrollBehavior="none";
+  });
+  root.style.overflow="hidden";
+  root.style.touchAction="none";
+  body.style.overflow="hidden";
+  body.style.touchAction="none";
+  body.style.position="fixed";
+  body.style.inset="0";
+  body.style.width="100%";
+  body.style.height="100%";
+  if(app){app.style.touchAction="none";app.style.overflow="hidden"}
+  canvas.style.touchAction="none";
+
+  document.addEventListener("touchmove",function(e){e.preventDefault()},{passive:false});
+  ["gesturestart","gesturechange","gestureend"].forEach(function(type){
+    document.addEventListener(type,function(e){e.preventDefault()},{passive:false});
+  });
+  ["contextmenu","dragstart","selectstart"].forEach(function(type){
+    document.addEventListener(type,function(e){e.preventDefault()});
+  });
+  document.addEventListener("dblclick",function(e){e.preventDefault()},{passive:false});
+  window.addEventListener("scroll",function(){window.scrollTo(0,0)},{passive:true});
+}
+lockMobileBrowser();
+
 function down(e){
   if(!running||paused)return;audioInit();pointer.down=true;pointer.id=e.pointerId;pointer.sx=pointer.x=e.clientX;pointer.sy=pointer.y=e.clientY;pointer.t0=performance.now();pointer.moved=false;pointer.charge=0;
   try{canvas.setPointerCapture(e.pointerId)}catch(err){}

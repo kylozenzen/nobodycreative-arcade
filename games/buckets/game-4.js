@@ -66,5 +66,11 @@ window.startBuckets=resetRun;
 
 var bagScript=document.createElement("script");
 bagScript.src="./game-5.js";
-bagScript.defer=false;
+bagScript.async=false;
+bagScript.onload=function(){
+  var shellScript=document.createElement("script");
+  shellScript.src="./game-6.js";
+  shellScript.async=false;
+  document.body.appendChild(shellScript);
+};
 document.body.appendChild(bagScript);

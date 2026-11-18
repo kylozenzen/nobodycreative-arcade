@@ -28,54 +28,27 @@ This folder is already the publish root. `index.html` is at the top level.
 
 No build command is required.
 
-## Connect a game
+## Games
 
-Open `data/games.js` and update:
+Every game lives in its own folder under `games/`:
 
-```js
-playUrl: "https://your-game.netlify.app",
-embed: true
+```
+games/
+  games.json            ← turns each game on (true) or off (false)
+  high-stakes-truth/
+    arcade.json         ← title, tagline, status, links, and art/preview file names
+    poster.webp         ← card art
+    screen.svg          ← optional screenshot for Project View
+    preview.mp4         ← optional 4–8 second silent preview
 ```
 
-Use `embed: false` when the game host blocks iframe embedding.
+**Turn a game on or off:** change its line in `games/games.json`, then push.
 
-## Replace cabinet artwork with a real screenshot
+**Add a game:** copy its repo into a new folder under `games/`, add an `arcade.json` and a poster, then add a line to `games/games.json`.
 
-Every game currently has branded preview art here:
+**Where a game runs:** set `playUrl` in its `arcade.json`. Use a full URL for a game hosted elsewhere, or `games/<id>/index.html` for one copied into its folder. Set `embed` to `false` if the host blocks iframes.
 
-```text
-assets/games/GAME-SLUG/poster.svg
-assets/games/GAME-SLUG/screen.svg
-```
-
-A clean 16:9 `.webp`, `.jpg`, or `.png` works best. Then update the game entry:
-
-```js
-poster: "assets/games/high-stakes-truth/poster.webp",
-screenshots: [
-  "assets/games/high-stakes-truth/screenshot-1.webp",
-  "assets/games/high-stakes-truth/screenshot-2.webp"
-]
-```
-
-Recommended screenshot size: **1280×720** or **1600×900**.
-
-## Add a moving gameplay preview
-
-Record 4–8 seconds of gameplay with no audio. Export a compact MP4 or WebM—ideally under 2 MB—and add:
-
-```js
-previewVideo: "assets/games/high-stakes-truth/preview.mp4"
-```
-
-The hub keeps clips unloaded until someone hovers, focuses, or scrolls the cabinet prominently into view on mobile. Data Saver and reduced-motion preferences are respected.
-
-## Mobile installation
-
-- On supported Chrome/Android browsers, the hub shows an **Install arcade** button when the browser says the PWA is ready.
-- On iPhone and iPad, the button opens the Safari steps: **Share → Add to Home Screen → Add**.
-- Installation requires HTTPS. Netlify supplies HTTPS automatically.
-- Browsers decide exactly when native installation becomes available, so the prompt may not appear on the first instant of a brand-new visit.
+File names in `arcade.json` are relative to the game's folder. Optional fields can be left out and default sensibly.
 
 ## The hidden game
 
@@ -106,10 +79,6 @@ python -m http.server 8080
 ```
 
 Then visit `http://localhost:8080`.
-
-## Add another game
-
-Duplicate an object in `data/games.js`, use a unique `id`, and update its content and media paths. The hub automatically updates the filters, counts, cards, workshop, recent plays, and project dialog.
 
 ## Phase 1.5.3 maintenance note
 

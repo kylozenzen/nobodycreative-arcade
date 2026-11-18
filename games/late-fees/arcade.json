@@ -1,0 +1,38 @@
+{
+  "title": "Late Fees",
+  "shortTitle": "Late Fees",
+  "tagline": "A video store mystery with extremely enforceable return dates.",
+  "description": "An in-progress game combining a 3D video-rental store, strange customers and Plot Twisted-style trivia.",
+  "longDescription": "Late Fees is the larger-world experiment: a stylized video store where serving customers, discovering tapes and solving distorted game descriptions all feed into the same loop.",
+  "genres": [
+    "Adventure",
+    "Trivia"
+  ],
+  "status": "In development",
+  "platform": [
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": true,
+  "playUrl": "",
+  "embed": true,
+  "mobileOptimized": false,
+  "session": "10–20 min",
+  "accent": "pink",
+  "icon": "▰",
+  "tools": [
+    "3D web game",
+    "Narrative design",
+    "Trivia systems"
+  ],
+  "role": "Concept, world design and gameplay planning",
+  "challenge": "Connect the trivia mechanic to a world that feels worth exploring.",
+  "solution": "Framed trivia as customer interactions, tape discovery and employee tasks inside a nostalgic store setting.",
+  "next": "Complete one polished shift with varied customer routes, clearer navigation and a satisfying end-of-day loop.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

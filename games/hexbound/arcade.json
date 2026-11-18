@@ -1,0 +1,37 @@
+{
+  "title": "Hexbound",
+  "shortTitle": "Hexbound",
+  "tagline": "Two fighters. Several grudges. Zero HR department.",
+  "description": "A 3D fighting-game experiment built around distinct characters, readable attacks and compact matches.",
+  "longDescription": "Hexbound is an early 3D fighting prototype exploring character silhouettes, arena readability and how much depth can fit into a browser-based demo.",
+  "genres": [
+    "Fighting",
+    "Action"
+  ],
+  "status": "Prototype",
+  "platform": [
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": true,
+  "playUrl": "",
+  "embed": true,
+  "mobileOptimized": false,
+  "session": "3–7 min",
+  "accent": "red",
+  "icon": "X",
+  "tools": [
+    "3D web prototype",
+    "JavaScript"
+  ],
+  "role": "Concept, combat design and iteration",
+  "challenge": "Make a 3D fighting prototype understandable before adding a large roster.",
+  "solution": "Limited scope to two contrasting characters and focused on readable spacing, hit feedback and camera behavior.",
+  "next": "Finish one complete matchup, then validate controls before expanding.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

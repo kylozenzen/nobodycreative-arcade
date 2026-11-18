@@ -1,0 +1,39 @@
+{
+  "title": "High Stakes Truth",
+  "shortTitle": "High Stakes",
+  "tagline": "Bet big on suspiciously specific facts.",
+  "description": "A wager-driven true-or-false game where confidence matters almost as much as knowing the answer.",
+  "longDescription": "High Stakes Truth combines rapid-fire trivia with a casino-style risk system. Players choose how much confidence to place behind each answer, creating tension even when the question looks easy.",
+  "genres": [
+    "Trivia",
+    "Strategy"
+  ],
+  "status": "Playable",
+  "platform": [
+    "Mobile",
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": true,
+  "workshop": false,
+  "playUrl": "https://highstakestruth.netlify.app",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "3–6 min",
+  "accent": "orange",
+  "icon": "◆",
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "role": "Concept, game design, writing, UI and development",
+  "challenge": "Make true-or-false trivia feel strategic instead of disposable.",
+  "solution": "Added percentage-based wagering, round modifiers, escalating tension and a table-first presentation.",
+  "next": "Expand the clue library, add daily challenges and create clearer onboarding for first-time players.",
+  "poster": "poster.webp",
+  "screenshots": [
+    "poster.webp"
+  ],
+  "previewVideo": ""
+}

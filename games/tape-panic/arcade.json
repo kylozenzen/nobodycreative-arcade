@@ -1,0 +1,41 @@
+{
+  "title": "Tape Panic",
+  "shortTitle": "Tape Panic",
+  "tagline": "Return every tape before the late fees become sentient.",
+  "description": "A hidden one-button score chase built directly into Nobody Arcade.",
+  "longDescription": "Tape Panic is the arcade’s secret cabinet: a tiny mobile-friendly reflex game about catching good tapes, avoiding cursed ones and discovering how long a joke can remain mechanically viable.",
+  "genres": [
+    "Arcade",
+    "Secret"
+  ],
+  "status": "Playable",
+  "platform": [
+    "Mobile",
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": false,
+  "playUrl": "secret/index.html",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "60 sec",
+  "accent": "secret",
+  "icon": "▰",
+  "secret": true,
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Local high score"
+  ],
+  "role": "Secret game concept, design and development",
+  "challenge": "Reward exploration without making the hidden content feel like a dead link.",
+  "solution": "Built a complete bite-sized game unlocked by repeated logo taps or a classic keyboard code.",
+  "next": "Add rare golden tapes, cabinet-specific achievements and more hidden routes into the Back Room.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

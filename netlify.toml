@@ -19,7 +19,7 @@
     Cache-Control = "no-cache, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/assets/games/*"
+  for = "/games/*"
   [headers.values]
     Cache-Control = "no-cache, max-age=0, must-revalidate"
 

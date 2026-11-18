@@ -1,0 +1,40 @@
+{
+  "title": "Feed Velocity",
+  "shortTitle": "Feed Velocity",
+  "tagline": "Jump the algorithm before it buries you.",
+  "description": "A fast arcade game about surviving the endless acceleration of the social feed.",
+  "longDescription": "Feed Velocity transforms algorithm anxiety into a quick reflex game. The player jumps obstacles, builds combos and races through a feed that never plans to calm down.",
+  "genres": [
+    "Arcade",
+    "Comedy"
+  ],
+  "status": "Playable",
+  "platform": [
+    "Mobile",
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": true,
+  "workshop": false,
+  "playUrl": "https://feedvelocity.netlify.app",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "1–3 min",
+  "accent": "cyan",
+  "icon": "↑",
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "RSS"
+  ],
+  "role": "Concept, game design, UI and development",
+  "challenge": "Teach a fast game quickly while preserving the joke and momentum.",
+  "solution": "Built a safe tutorial, combo multiplier, finish fanfare, mobile haptics and an RSS-powered between-level reader.",
+  "next": "Add leaderboard support, more obstacle patterns and stronger progression between runs.",
+  "poster": "poster.webp",
+  "screenshots": [
+    "poster.webp"
+  ],
+  "previewVideo": ""
+}

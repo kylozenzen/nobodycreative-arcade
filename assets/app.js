@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const games = Array.isArray(window.ARCADE_GAMES) ? window.ARCADE_GAMES : [];
+  let games = [];
   const STORAGE = {
     recent: "nobodyArcade.recentGame",
     played: "nobodyArcade.playedGames",
@@ -18,8 +18,8 @@
     installPrompt: null,
     secretTaps: []
   };
-  const publicGames = games.filter((game) => !game.secret);
-  const secretGames = games.filter((game) => game.secret);
+  let publicGames = [];
+  let secretGames = [];
   const $ = (selector) => document.querySelector(selector);
 
   const elements = {
@@ -227,7 +227,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     if (!hasLink(game)) {
-      showToast(`${game.title} needs its playUrl added in data/games.js.`);
+      showToast(`${game.title} needs its playUrl added in its arcade.json.`);
       chirp(140, .08);
       return;
     }
@@ -449,5 +449,10 @@
   }
 
   elements.year.textContent = new Date().getFullYear();
-  renderStats(); renderFeatured(); renderFilters(); renderGames(); renderWorkshop(); renderContinue(); renderBackRoom(); updateSoundButton(); updateInstallUI(); handleHash();
+  loadArcadeGames().then((list) => {
+    games = list;
+    publicGames = games.filter((game) => !game.secret);
+    secretGames = games.filter((game) => game.secret);
+    renderStats(); renderFeatured(); renderFilters(); renderGames(); renderWorkshop(); renderContinue(); renderBackRoom(); updateSoundButton(); updateInstallUI(); handleHash();
+  }).catch(() => showToast("Couldn't load the arcade games."));
 })();

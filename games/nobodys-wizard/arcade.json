@@ -1,0 +1,37 @@
+{
+  "title": "Nobody’s Wizard",
+  "shortTitle": "Nobody’s Wizard",
+  "tagline": "Magic is easy. Navigation is apparently the final boss.",
+  "description": "A top-down action prototype about spell combat, exploration, and making dark paths actually readable.",
+  "longDescription": "Nobody’s Wizard is a top-down action experiment focused on combat feel, tutorial clarity and guiding players through a moody environment without giant arrows everywhere.",
+  "genres": [
+    "Action",
+    "Adventure"
+  ],
+  "status": "Prototype",
+  "platform": [
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": true,
+  "playUrl": "",
+  "embed": true,
+  "mobileOptimized": false,
+  "session": "5–10 min",
+  "accent": "green",
+  "icon": "✦",
+  "tools": [
+    "Web game prototype",
+    "JavaScript"
+  ],
+  "role": "Concept, game design and iteration",
+  "challenge": "Improve path readability without losing the dark fantasy atmosphere.",
+  "solution": "Reworked brightness, environmental guidance and tutorial sequencing around player behavior.",
+  "next": "Expand enemy variety and define one polished vertical slice.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

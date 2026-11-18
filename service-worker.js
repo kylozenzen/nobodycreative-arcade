@@ -1,13 +1,9 @@
-const CACHE = "nobody-arcade-v1-5-8";
+const CACHE = "nobody-arcade-v2-1-0";
 const CORE = [
-  "./", "./index.html", "./assets/styles.css", "./assets/app.js", "./data/games.js",
-  "./manifest.webmanifest", "./assets/favicon.svg", "./assets/share-card.svg",
+  "./", "./index.html", "./assets/styles.css", "./assets/app.js", "./assets/games-loader.js",
+  "./games/games.json", "./manifest.webmanifest", "./assets/favicon.svg", "./assets/share-card.svg",
   "./assets/icons/icon-192.png", "./assets/icons/icon-512.png",
-  "./secret/index.html", "./secret/game.js", "./secret/styles.css",
-  "./assets/games/plot-twisted-movies/plot-twisted-movies-poster.webp",
-  "./assets/games/high-stakes-truth/poster.webp",
-  "./assets/games/plot-twisted-gaming/poster.webp",
-  "./assets/games/feed-velocity/poster.webp"
+  "./secret/index.html", "./secret/game.js", "./secret/styles.css"
 ];
 
 self.addEventListener("install", (event) => {
@@ -33,8 +29,8 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== location.origin) return;
 
   const needsFreshContent =
-    url.pathname === "/data/games.js" ||
-    url.pathname.startsWith("/assets/games/");
+    url.pathname === "/games/games.json" ||
+    url.pathname.startsWith("/games/");
 
   // Game data and artwork change often. Prefer the network so a newly deployed
   // poster is visible immediately, while keeping the current cache as an

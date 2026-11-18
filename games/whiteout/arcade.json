@@ -1,0 +1,39 @@
+{
+  "title": "Whiteout",
+  "shortTitle": "Whiteout",
+  "tagline": "Carve, launch, grab, and pretend that landing was intentional.",
+  "description": "A mobile-first snowboard trick run with swipes, spins, grabs, flips and a ninety-second clock.",
+  "longDescription": "Whiteout explores gesture controls for a compact action-sports game. The focus is readable movement, satisfying trick chains and short sessions that invite one more run.",
+  "genres": [
+    "Sports",
+    "Arcade"
+  ],
+  "status": "In development",
+  "platform": [
+    "Mobile"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": true,
+  "playUrl": "https://project-whiteout.netlify.app",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "90 sec",
+  "accent": "ice",
+  "icon": "▲",
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Touch controls"
+  ],
+  "role": "Concept, control design, UI and development",
+  "challenge": "Fit carving, crouching, grabs, spins and flips into intuitive mobile controls.",
+  "solution": "Separated grounded controls from airborne gestures and designed the scoring around readable trick chains.",
+  "next": "Tune landing windows, add TRICKY mode and introduce signature uber tricks.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

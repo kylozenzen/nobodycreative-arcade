@@ -1,0 +1,39 @@
+{
+  "title": "Animal Puzzle",
+  "shortTitle": "Animal Puzzle",
+  "tagline": "Tiny puzzles for tiny humans. Adults may also participate.",
+  "description": "A calm, colorful animal puzzle designed for young children with six pieces or fewer.",
+  "longDescription": "Animal Puzzle is a kid-friendly project built around large touch targets, recognizable animals and low-frustration interactions. It is designed to be playable without reading.",
+  "genres": [
+    "Family",
+    "Puzzle"
+  ],
+  "status": "Playable",
+  "platform": [
+    "Mobile",
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": false,
+  "workshop": false,
+  "playUrl": "",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "2–5 min",
+  "accent": "yellow",
+  "icon": "●",
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "role": "Concept, child-focused UX and development",
+  "challenge": "Make the game understandable, forgiving and satisfying for a preschool-age player.",
+  "solution": "Used very small piece counts, oversized controls, immediate feedback and a broad animal library.",
+  "next": "Add more animals, gentle audio feedback and a parent-controlled difficulty setting.",
+  "poster": "poster.svg",
+  "screenshots": [
+    "screen.svg"
+  ],
+  "previewVideo": ""
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Plot Twisted Gaming",
+  "shortTitle": "Plot Twisted",
+  "tagline": "Name the game from a painfully bad description.",
+  "description": "Video-game trivia built around awkwardly accurate plot summaries and fuzzy answer matching.",
+  "longDescription": "Plot Twisted turns recognizable games into deliberately unhelpful descriptions. The fun comes from the instant jump between confusion and recognition.",
+  "genres": [
+    "Trivia",
+    "Comedy"
+  ],
+  "status": "Playable",
+  "platform": [
+    "Mobile",
+    "Desktop"
+  ],
+  "year": 2026,
+  "featured": true,
+  "workshop": false,
+  "playUrl": "https://plot-twisted-games.netlify.app",
+  "embed": true,
+  "mobileOptimized": true,
+  "session": "2–5 min",
+  "accent": "purple",
+  "icon": "?",
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "JSON clue library"
+  ],
+  "role": "Concept, writing, clue system, UI and development",
+  "challenge": "Create hundreds of clues that are funny without becoming impossible.",
+  "solution": "Used a scalable clue file, forgiving fuzzy matching and a modern game library focused on the last 25–30 years.",
+  "next": "Triple the clue pool, improve streak feedback and add themed challenge packs.",
+  "poster": "poster.webp",
+  "screenshots": [
+    "poster.webp"
+  ],
+  "previewVideo": ""
+}

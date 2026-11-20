@@ -1,9 +1,9 @@
 {
-  "title": "Plot Twisted Gaming",
-  "shortTitle": "Plot Twisted",
-  "tagline": "Name the game from a painfully bad description.",
-  "description": "Video-game trivia built around awkwardly accurate plot summaries and fuzzy answer matching.",
-  "longDescription": "Plot Twisted turns recognizable games into deliberately unhelpful descriptions. The fun comes from the instant jump between confusion and recognition.",
+  "title": "Plot Twisted: Gaming Edition",
+  "shortTitle": "PT: Gaming",
+  "tagline": "Name the game from one painfully bad description.",
+  "description": "Retro cartridge trivia. Five stages, three lives and a boss, all built on clues that are accurate in the worst possible way.",
+  "longDescription": "Plot Twisted: Gaming Edition turns the last 25 to 30 years of video games into deliberately unhelpful one-liners. Clear five stages and a boss on three lives. Typing 'Sonic' counts for Sonic the Hedgehog, because recognition is the whole point.",
   "genres": [
     "Trivia",
     "Comedy"
@@ -29,12 +29,13 @@
     "JSON clue library"
   ],
   "role": "Concept, writing, clue system, UI and development",
-  "challenge": "Create hundreds of clues that are funny without becoming impossible.",
-  "solution": "Used a scalable clue file, forgiving fuzzy matching and a modern game library focused on the last 25–30 years.",
-  "next": "Triple the clue pool, improve streak feedback and add themed challenge packs.",
+  "challenge": "Write hundreds of clues that are funny without becoming impossible, then grade answers the way a friend would.",
+  "solution": "A 300+ clue library, recognition-first answer matching that accepts franchise shorthand when only one answer fits, and a cartridge look with stages, lives and a boss round.",
+  "next": "Grow the clue pool, sharpen streak feedback and add themed challenge packs.",
   "poster": "poster.webp",
   "screenshots": [
     "poster.webp"
   ],
-  "previewVideo": ""
+  "previewVideo": "",
+  "sourceUrl": "https://github.com/kylozenzen/pt-gaming-redesign"
 }

@@ -2,8 +2,8 @@
   "title": "Feed Velocity",
   "shortTitle": "Feed Velocity",
   "tagline": "Jump the algorithm before it buries you.",
-  "description": "A fast arcade game about surviving the endless acceleration of the social feed.",
-  "longDescription": "Feed Velocity transforms algorithm anxiety into a quick reflex game. The player jumps obstacles, builds combos and races through a feed that never plans to calm down.",
+  "description": "A climbing arcade game about social media. Ten platforms, and each level plays the way that platform's algorithm actually behaves.",
+  "longDescription": "Feed Velocity turns algorithm anxiety into a jump game. TikTok platforms vanish because trends expire, Instagram posts ghost because reach is unreliable, and YouTube sends a rising demonetization wave. Strategy cards between levels share how I actually think about each platform.",
   "genres": [
     "Arcade",
     "Comedy"
@@ -29,12 +29,13 @@
     "RSS"
   ],
   "role": "Concept, game design, UI and development",
-  "challenge": "Teach a fast game quickly while preserving the joke and momentum.",
-  "solution": "Built a safe tutorial, combo multiplier, finish fanfare, mobile haptics and an RSS-powered between-level reader.",
+  "challenge": "Turn how each social platform really behaves into game mechanics, without a lecture to explain them.",
+  "solution": "Gave each of the 10 platforms its own rules based on how it really works, plus strategy cards and an RSS-powered reader between levels for players who want the why.",
   "next": "Add leaderboard support, more obstacle patterns and stronger progression between runs.",
   "poster": "poster.webp",
   "screenshots": [
     "poster.webp"
   ],
-  "previewVideo": ""
+  "previewVideo": "",
+  "sourceUrl": "https://github.com/kylozenzen/Feed-Velocity"
 }

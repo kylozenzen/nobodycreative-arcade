@@ -60,7 +60,9 @@
   function renderStats() {
     const pool = availableGames();
     elements.playableCount.textContent = pool.filter(isPlayable).length;
-    elements.prototypeCount.textContent = pool.filter((game) => ["Prototype", "In development", "Concept"].includes(game.status)).length;
+    const experiments = pool.filter((game) => ["Prototype", "In development", "Concept"].includes(game.status)).length;
+    elements.prototypeCount.textContent = experiments;
+    elements.prototypeCount.parentElement.classList.toggle("hidden", experiments === 0);
     elements.playedCount.textContent = getPlayedIds().filter((id) => pool.some((game) => game.id === id)).length;
   }
 
@@ -161,6 +163,9 @@
   }
   function renderWorkshop() {
     const workshopGames = publicGames.filter((game) => game.workshop);
+    const hasWorkshop = workshopGames.length > 0;
+    document.querySelector("#workshop")?.classList.toggle("hidden", !hasWorkshop);
+    document.querySelectorAll('a[href="#workshop"]').forEach((link) => link.classList.toggle("hidden", !hasWorkshop));
     elements.workshopGrid.innerHTML = workshopGames.map((game, index) => `
       <article class="workshop-card"><span class="workshop-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><div>
         <p class="eyebrow">${escapeHtml(game.status)}</p><h3>${escapeHtml(game.title)}</h3><p>${escapeHtml(game.next)}</p>

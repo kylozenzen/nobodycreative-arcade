@@ -1,8 +1,8 @@
 {
-  "high-stakes-truth": false,
-  "plot-twisted-movies": false,
+  "high-stakes-truth": true,
+  "plot-twisted-movies": true,
   "plot-twisted-gaming": false,
-  "feed-velocity": false,
+  "feed-velocity": true,
   "whiteout": false,
   "nobodys-wizard": false,
   "hexbound": false,

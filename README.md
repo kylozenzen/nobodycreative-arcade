@@ -17,6 +17,8 @@ Every cabinet plays in the browser, and each one has a Project View with the con
 
 The repo root is the publish root. `index.html` is at the top level and there is no build step.
 
+The look lives in `assets/retro.css` (neon palette, pixel labels, lit marquees, CRT screens), layered over the layout in `assets/styles.css`. Each cabinet's neon color comes from `accent` in its `arcade.json`. Fonts are self-hosted in `assets/fonts/`.
+
 After changing core files (`index.html`, `assets/`, `secret/`), bump `CACHE` in `service-worker.js` so returning visitors get the new version.
 
 ## Games

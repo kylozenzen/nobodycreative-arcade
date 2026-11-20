@@ -80,6 +80,7 @@
   function renderFeatured() {
     const game = publicGames.find((item) => item.featured) || publicGames[0];
     if (!game) return;
+    elements.featuredGame.closest(".featured-shell").dataset.accent = game.accent || "";
     elements.featuredGame.innerHTML = `
       <div class="featured-art">
         ${mediaMarkup(game, "featured")}
@@ -93,6 +94,7 @@
           <button class="button button-primary" type="button" data-play="${escapeHtml(game.id)}">${escapeHtml(playButtonLabel(game))}</button>
           <button class="button button-secondary" type="button" data-details="${escapeHtml(game.id)}">Project view</button>
         </div>
+        <p class="insert-coin" aria-hidden="true">Insert coin</p>
       </div>`;
   }
 
@@ -121,7 +123,7 @@
   function gameCard(game) {
     const played = getPlayedIds().includes(game.id);
     return `
-      <article class="game-card" data-game-card="${escapeHtml(game.id)}">
+      <article class="game-card" data-game-card="${escapeHtml(game.id)}" data-accent="${escapeHtml(game.accent || "")}">
         <div class="cabinet-top">
           <div class="cabinet-marquee">
             <strong>${escapeHtml(game.shortTitle || game.title)}</strong>
@@ -132,7 +134,7 @@
           <div class="cabinet-screen">
             ${mediaMarkup(game)}
             <div class="screen-labels">
-              <span class="preview-badge">${game.previewVideo ? "Live preview" : "Preview art"}</span>
+              ${game.previewVideo ? '<span class="preview-badge">Live preview</span>' : "<span></span>"}
               ${game.mobileOptimized ? '<span class="touch-badge">Touch ready</span>' : ""}
             </div>
           </div>
@@ -218,6 +220,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     elements.dialogContent.innerHTML = projectDialogMarkup(game);
+    elements.gameDialog.dataset.accent = game.accent || "";
     elements.gameDialog.showModal();
     chirp(360, .05);
   }
@@ -240,6 +243,7 @@
     markPlayed(game); chirp(520, .08);
     if (game.embed) {
       elements.playDialogTitle.textContent = game.title;
+      elements.playDialog.dataset.accent = game.accent || "";
       elements.openNewTab.href = game.playUrl;
       elements.iframeWrap.classList.remove("loaded");
       elements.playerLoading.classList.remove("hidden");

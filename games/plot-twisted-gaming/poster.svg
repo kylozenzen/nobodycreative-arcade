@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" role="img" aria-labelledby="t d">
-<title id="t">PLOT TWISTED GAMING preview art</title><desc id="d">Concept cabinet artwork for PLOT TWISTED GAMING</desc>
+<title id="t">PLOT TWISTED GAMING preview art</title><desc id="d">Cabinet artwork for PLOT TWISTED GAMING</desc>
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b69aff"/><stop offset="1" stop-color="#35126a"/></linearGradient><radialGradient id="r"><stop stop-color="white" stop-opacity=".15"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="18"/></filter></defs>
 <rect width="1000" height="625" fill="#09090d"/><rect width="1000" height="625" fill="url(#g)"/><circle cx="760" cy="220" r="340" fill="url(#r)"/>
 <path d="M0 555L1000 460v165H0z" fill="#050508" fill-opacity=".55"/><path d="M0 590L1000 500" stroke="white" stroke-opacity=".10" stroke-width="2"/>

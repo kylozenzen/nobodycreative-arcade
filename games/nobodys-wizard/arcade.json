@@ -28,7 +28,7 @@
   "role": "Concept, game design and iteration",
   "challenge": "Improve path readability without losing the dark fantasy atmosphere.",
   "solution": "Reworked brightness, environmental guidance and tutorial sequencing around player behavior.",
-  "next": "Expand enemy variety and define one polished vertical slice.",
+  "next": "Up next: more enemy types and one polished level that shows the whole idea.",
   "poster": "poster.svg",
   "screenshots": [
     "screen.svg"

@@ -51,7 +51,7 @@
   function isPlayable(game) { return game.status === "Playable"; }
   function playButtonLabel(game) {
     if (hasLink(game)) return "Play now";
-    return isPlayable(game) ? "Connect game" : "Build in progress";
+    return isPlayable(game) ? "Coming soon" : "Build in progress";
   }
   function availableGames() { return state.secretUnlocked ? games : publicGames; }
   function posterFor(game) { return game.poster || "assets/share-card.svg"; }
@@ -204,7 +204,7 @@
           <div class="case-item"><strong>My role</strong><p>${escapeHtml(game.role)}</p></div>
           <div class="case-item"><strong>The challenge</strong><p>${escapeHtml(game.challenge)}</p></div>
           <div class="case-item"><strong>The solution</strong><p>${escapeHtml(game.solution)}</p></div>
-          <div class="case-item"><strong>Next iteration</strong><p>${escapeHtml(game.next)}</p></div>
+          <div class="case-item"><strong>What's next</strong><p>${escapeHtml(game.next)}</p></div>
         </div>
         <p class="eyebrow">Tools and systems</p>
         <div class="tools-list">${game.tools.map((tool) => `<span class="meta-pill">${escapeHtml(tool)}</span>`).join("")}</div>
@@ -232,7 +232,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     if (!hasLink(game)) {
-      showToast(`${game.title} needs its playUrl added in its arcade.json.`);
+      showToast(`${game.title} isn't plugged in yet. Check back soon.`);
       chirp(140, .08);
       return;
     }

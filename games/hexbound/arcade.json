@@ -28,7 +28,7 @@
   "role": "Concept, combat design and iteration",
   "challenge": "Make a 3D fighting prototype understandable before adding a large roster.",
   "solution": "Limited scope to two contrasting characters and focused on readable spacing, hit feedback and camera behavior.",
-  "next": "Finish one complete matchup, then validate controls before expanding.",
+  "next": "Up next: one complete matchup with tight controls, then a bigger roster.",
   "poster": "poster.svg",
   "screenshots": [
     "screen.svg"

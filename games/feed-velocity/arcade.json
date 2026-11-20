@@ -31,7 +31,7 @@
   "role": "Concept, game design, UI and development",
   "challenge": "Turn how each social platform really behaves into game mechanics, without a lecture to explain them.",
   "solution": "Gave each of the 10 platforms its own rules based on how it really works, plus strategy cards and an RSS-powered reader between levels for players who want the why.",
-  "next": "Add leaderboard support, more obstacle patterns and stronger progression between runs.",
+  "next": "Up next: leaderboards, new obstacle patterns and more reasons to take one more run.",
   "poster": "poster.webp",
   "screenshots": [
     "poster.webp"

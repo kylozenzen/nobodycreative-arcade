@@ -30,7 +30,7 @@
   "role": "Concept, control design, UI and development",
   "challenge": "Fit carving, crouching, grabs, spins and flips into intuitive mobile controls.",
   "solution": "Separated grounded controls from airborne gestures and designed the scoring around readable trick chains.",
-  "next": "Tune landing windows, add TRICKY mode and introduce signature uber tricks.",
+  "next": "Up next: tighter landings, a TRICKY mode and signature uber tricks.",
   "poster": "poster.svg",
   "screenshots": [
     "screen.svg"

@@ -8,5 +8,5 @@
   "hexbound": false,
   "animal-puzzle": false,
   "late-fees": false,
-  "tape-panic": false
+  "tape-panic": true
 }

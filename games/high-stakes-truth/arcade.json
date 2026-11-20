@@ -1,9 +1,9 @@
 {
   "title": "High Stakes Truth",
   "shortTitle": "High Stakes",
-  "tagline": "Bet big on suspiciously specific facts.",
-  "description": "A wager-driven true-or-false game where confidence matters almost as much as knowing the answer.",
-  "longDescription": "High Stakes Truth combines rapid-fire trivia with a casino-style risk system. Players choose how much confidence to place behind each answer, creating tension even when the question looks easy.",
+  "tagline": "Bet your bank on suspiciously specific facts.",
+  "description": "True-or-false trivia at a 3D casino table. Bet your chips on what you know and try to beat The House.",
+  "longDescription": "High Stakes Truth turns true-or-false trivia into a bet. Every claim gets a wager, from a cautious 25% to all-in, and The House, a masked dealer with opinions, reacts to every win and every bust. Tricky claims and deep cuts pay more.",
   "genres": [
     "Trivia",
     "Strategy"
@@ -25,15 +25,18 @@
   "tools": [
     "HTML",
     "CSS",
-    "JavaScript"
+    "JavaScript",
+    "Three.js",
+    "PWA"
   ],
   "role": "Concept, game design, writing, UI and development",
-  "challenge": "Make true-or-false trivia feel strategic instead of disposable.",
-  "solution": "Added percentage-based wagering, round modifiers, escalating tension and a table-first presentation.",
-  "next": "Expand the clue library, add daily challenges and create clearer onboarding for first-time players.",
+  "challenge": "Make true-or-false trivia feel like a decision instead of a coin flip.",
+  "solution": "Chip-based wagers (25%, 50%, 75% or all-in), payouts that rise with difficulty, a fact bank of 800+ claims tilted so 'always pick True' loses, and a 3D table with a dealer who talks back.",
+  "next": "Grow the fact bank, add daily challenges and make the first round teach itself.",
   "poster": "poster.webp",
   "screenshots": [
     "poster.webp"
   ],
-  "previewVideo": ""
+  "previewVideo": "",
+  "sourceUrl": "https://github.com/kylozenzen/Stakes-Are-High"
 }

@@ -304,8 +304,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0 calc(50px + var(--sa
   .dialog-footer { flex-direction: column; }
   .back-room { padding: 26px 16px; }
   footer { flex-direction: column; padding-bottom: 30px; }
-  .mobile-nav { position: fixed; z-index: 90; left: 8px; right: 8px; bottom: calc(8px + var(--safe-bottom)); min-height: 60px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch; border: 1px solid var(--line-strong); border-radius: 18px; background: rgba(17,17,25,.92); box-shadow: 0 18px 55px rgba(0,0,0,.5); backdrop-filter: blur(16px); overflow: hidden; }
-  .mobile-nav.install-available { grid-template-columns: repeat(5, 1fr); }
+  .mobile-nav { position: fixed; z-index: 90; left: 8px; right: 8px; bottom: calc(8px + var(--safe-bottom)); min-height: 60px; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; align-items: stretch; border: 1px solid var(--line-strong); border-radius: 18px; background: rgba(17,17,25,.92); box-shadow: 0 18px 55px rgba(0,0,0,.5); backdrop-filter: blur(16px); overflow: hidden; }
   .mobile-nav a, .mobile-nav button { border: 0; background: transparent; color: var(--muted); text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 0; font-size: .61rem; padding: 6px 3px; cursor: pointer; }
   .mobile-nav span { color: var(--ink); font-size: 1rem; line-height: 1; }
   .mobile-nav a:active, .mobile-nav button:active { background: rgba(255,255,255,.07); }

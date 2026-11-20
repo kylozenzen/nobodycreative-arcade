@@ -13,5 +13,4 @@ MANUAL DEPLOY
 IMPORTANT
 - Do not unzip it and then upload the parent folder.
 - PWA installation requires the HTTPS Netlify URL.
-- Update data/games.js with your deployed game URLs.
-- Replace hello@example.com in index.html.
+- Game links live in games/<id>/arcade.json (playUrl). Turn games on or off in games/games.json.

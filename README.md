@@ -1,32 +1,23 @@
-# Nobody Arcade — Phase 1.5
+# Nobody Arcade
 
-A deployable, mobile-first, data-driven arcade and playable portfolio for Nobody Creative.
+A mobile-first arcade and playable portfolio for Nobody Creative. Live at https://nobodycreative-arcade.netlify.app
 
-## What Phase 1.5 adds
+Every cabinet plays in the browser, and each one has a Project View with the concept, role, challenge, solution and next steps.
 
-- Cabinet-style game cards with artwork, screen frames, joystick controls, and status marquees
-- Static poster art for every current project
-- Optional short gameplay-video previews that load only when needed
-- Mobile-first layout with a sticky bottom navigation bar
-- Full-screen mobile game player with deferred iframe loading
-- Touch-ready and session-length labels
-- Installable Progressive Web App (PWA)
-- Android/Chrome installation prompt and iPhone/iPad instructions
-- Home-screen icons, splash colors, service worker, offline shell, and app shortcuts
-- Hidden Back Room unlocked through an easter egg
-- A complete secret mobile game: **Tape Panic**
-- Existing search, filters, project case studies, sharing, recent plays, workshop, and interface sounds
+## What's in it
+
+- Cabinet-style game cards with poster art and optional lazy-loaded preview videos
+- Search, genre filters, sorting and a featured cabinet
+- Full-screen game player with deferred iframe loading
+- Installable PWA with home-screen icons, offline shell and app shortcuts
+- A hidden Back Room with a secret game, **Tape Panic**
+- Continue Playing, sharing and optional interface sounds
 
 ## Deploy to Netlify
 
-This folder is already the publish root. `index.html` is at the top level.
+The repo root is the publish root. `index.html` is at the top level and there is no build step.
 
-1. Zip the contents of this folder—not a parent folder.
-2. Open the site in Netlify.
-3. Go to **Deploys** and upload the ZIP as a manual deploy.
-4. Visit the HTTPS Netlify URL once deployment finishes.
-
-No build command is required.
+After changing core files (`index.html`, `assets/`, `secret/`), bump `CACHE` in `service-worker.js` so returning visitors get the new version.
 
 ## Games
 
@@ -62,14 +53,6 @@ secret/styles.css
 secret/game.js
 ```
 
-## Update contact information
-
-In `index.html`, replace:
-
-```html
-mailto:hello@example.com
-```
-
 ## Local preview
 
 PWA installation and the service worker require a local server rather than opening the file directly:
@@ -79,7 +62,3 @@ python -m http.server 8080
 ```
 
 Then visit `http://localhost:8080`.
-
-## Phase 1.5.3 maintenance note
-
-This package preserves the Phase 1.5 design and interaction model. The only functional maintenance change is a hardened Tape Panic game engine plus a service-worker cache bump so the repaired game code is delivered. Tape Panic remains embedded in the original Nobody Arcade player.

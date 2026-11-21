@@ -32,7 +32,7 @@
   "role": "Concept, game design, writing, UI and development",
   "challenge": "Make true-or-false trivia feel like a decision instead of a coin flip.",
   "solution": "Chip-based wagers (25%, 50%, 75% or all-in), payouts that rise with difficulty, a fact bank of 800+ claims tilted so 'always pick True' loses, and a 3D table with a dealer who talks back.",
-  "next": "Grow the fact bank, add daily challenges and make the first round teach itself.",
+  "next": "Up next: a bigger fact bank, daily challenges and a first round that teaches itself.",
   "poster": "poster.webp",
   "screenshots": [
     "poster.webp"

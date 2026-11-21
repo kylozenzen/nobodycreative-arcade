@@ -51,7 +51,7 @@
   function isPlayable(game) { return game.status === "Playable"; }
   function playButtonLabel(game) {
     if (hasLink(game)) return "Play now";
-    return isPlayable(game) ? "Connect game" : "Build in progress";
+    return isPlayable(game) ? "Coming soon" : "Build in progress";
   }
   function availableGames() { return state.secretUnlocked ? games : publicGames; }
   function posterFor(game) { return game.poster || "assets/share-card.svg"; }
@@ -80,6 +80,7 @@
   function renderFeatured() {
     const game = publicGames.find((item) => item.featured) || publicGames[0];
     if (!game) return;
+    elements.featuredGame.closest(".featured-shell").dataset.accent = game.accent || "";
     elements.featuredGame.innerHTML = `
       <div class="featured-art">
         ${mediaMarkup(game, "featured")}
@@ -93,6 +94,7 @@
           <button class="button button-primary" type="button" data-play="${escapeHtml(game.id)}">${escapeHtml(playButtonLabel(game))}</button>
           <button class="button button-secondary" type="button" data-details="${escapeHtml(game.id)}">Project view</button>
         </div>
+        <p class="insert-coin" aria-hidden="true">Insert coin</p>
       </div>`;
   }
 
@@ -121,7 +123,7 @@
   function gameCard(game) {
     const played = getPlayedIds().includes(game.id);
     return `
-      <article class="game-card" data-game-card="${escapeHtml(game.id)}">
+      <article class="game-card" data-game-card="${escapeHtml(game.id)}" data-accent="${escapeHtml(game.accent || "")}">
         <div class="cabinet-top">
           <div class="cabinet-marquee">
             <strong>${escapeHtml(game.shortTitle || game.title)}</strong>
@@ -132,7 +134,7 @@
           <div class="cabinet-screen">
             ${mediaMarkup(game)}
             <div class="screen-labels">
-              <span class="preview-badge">${game.previewVideo ? "Live preview" : "Preview art"}</span>
+              ${game.previewVideo ? '<span class="preview-badge">Live preview</span>' : "<span></span>"}
               ${game.mobileOptimized ? '<span class="touch-badge">Touch ready</span>' : ""}
             </div>
           </div>
@@ -204,7 +206,7 @@
           <div class="case-item"><strong>My role</strong><p>${escapeHtml(game.role)}</p></div>
           <div class="case-item"><strong>The challenge</strong><p>${escapeHtml(game.challenge)}</p></div>
           <div class="case-item"><strong>The solution</strong><p>${escapeHtml(game.solution)}</p></div>
-          <div class="case-item"><strong>Next iteration</strong><p>${escapeHtml(game.next)}</p></div>
+          <div class="case-item"><strong>What's next</strong><p>${escapeHtml(game.next)}</p></div>
         </div>
         <p class="eyebrow">Tools and systems</p>
         <div class="tools-list">${game.tools.map((tool) => `<span class="meta-pill">${escapeHtml(tool)}</span>`).join("")}</div>
@@ -218,6 +220,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     elements.dialogContent.innerHTML = projectDialogMarkup(game);
+    elements.gameDialog.dataset.accent = game.accent || "";
     elements.gameDialog.showModal();
     chirp(360, .05);
   }
@@ -232,7 +235,7 @@
     const game = games.find((item) => item.id === gameId);
     if (!game || (game.secret && !state.secretUnlocked)) return;
     if (!hasLink(game)) {
-      showToast(`${game.title} needs its playUrl added in its arcade.json.`);
+      showToast(`${game.title} isn't plugged in yet. Check back soon.`);
       chirp(140, .08);
       return;
     }
@@ -240,6 +243,7 @@
     markPlayed(game); chirp(520, .08);
     if (game.embed) {
       elements.playDialogTitle.textContent = game.title;
+      elements.playDialog.dataset.accent = game.accent || "";
       elements.openNewTab.href = game.playUrl;
       elements.iframeWrap.classList.remove("loaded");
       elements.playerLoading.classList.remove("hidden");
